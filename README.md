@@ -19,10 +19,12 @@ Azurite helps you focus on building amazing bots, not worrying about boilerplate
 - **Operating System**: Windows, macOS, or Linux
 
 # 🔖 Docs<br>
-- How to make a plugin?: [click_here](https://github.com/Notkenftr/Azurite/docs/make_a_plugin)
-- how to write mapping?: [click_here](https://github.com/Notkenftr/Azurite/docs/mapping)
-- How to make a script?: [click_here](https://github.com/Notkenftr/Azurite/docs/make_a_script)
-
+## 🗒️ EN:
+- How to make a plugin?: [click_here](https://github.com/Notkenftr/Azurite/docs/EN/make_a_plugin)
+- How to make a script?: [click_here](https://github.com/Notkenftr/Azurite/docs/EN/make_a_script)
+## 🗒️ VI:
+- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/Azurite/docs/VI/make_a_plugin)
+- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/Azurite/docs/VI/make_a_script)
 # 📍 LICENSE
 
 MIT License
