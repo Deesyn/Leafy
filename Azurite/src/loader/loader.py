@@ -58,7 +58,6 @@ class Loader:
             self.group_commands = mapping["mapping"]["command_group_list"]
 
             if not _check_python_version(plugin_name, plugin_source):
-                print(f"[Loader] Skipped '{plugin_name}' (Python version incompatible)")
                 return
 
             await asyncio.gather(
@@ -68,7 +67,7 @@ class Loader:
             )
 
         except Exception as e:
-            print(f"[Loader] Failed to load plugin '{plugin_name}': {e}")
+            raise e
 
 
 
