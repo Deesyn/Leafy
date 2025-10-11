@@ -12,6 +12,8 @@ Keep your bot organized, scalable, and easy to maintain.
 
 Azurite helps you focus on building amazing bots, not worrying about boilerplate code or repetitive setup.
 
+![Azurite-logo](https://images-ext-1.discordapp.net/external/Mx47LACNL-pWIds4e5nKO2ppF5sYNgCaynN7lr36a7o/%3Fsize%3D1024/https/cdn.discordapp.com/icons/1405529842983899236/ebb8aea97de5a20333e54b24ec090cc5.png?format=png&quality=lossless)
+
 # 🗒️ Requirements<br>
 - **Python**: 3.8+
 - **Operating System**: Windows, macOS, or Linux
