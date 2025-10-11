@@ -20,11 +20,11 @@ Azurite helps you focus on building amazing bots, not worrying about boilerplate
 
 # 🔖 Docs<br>
 ## 🗒️ EN:
-- How to make a plugin?: [click_here](https://github.com/Notkenftr/Azurite/docs/EN/make_a_plugin)
-- How to make a script?: [click_here](https://github.com/Notkenftr/Azurite/docs/EN/make_a_script)
+- How to make a plugin?: [click_here](https://github.com/Notkenftr/Azurite/tree/main/docs/EN/make_a_plugin)
+- How to make a script?: [click_here](https://github.com/Notkenftr/Azurite/tree/main/docs/EN/make_a_script)
 ## 🗒️ VI:
-- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/Azurite/docs/VI/make_a_plugin)
-- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/Azurite/docs/VI/make_a_script)
+- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/Azurite/tree/main/docs/VI/make_a_plugin)
+- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/Azurite/docs/tree/main/VI/make_a_script)
 # 📍 LICENSE
 
 MIT License
