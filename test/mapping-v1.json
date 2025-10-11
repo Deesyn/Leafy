@@ -1,0 +1,25 @@
+{
+  "name": "Azurite Default",
+  "module": {
+    "mainEvent": "main_events.py",
+    "path": {
+      "commands": "commands",
+      "commandGroup": "commandGroup",
+      "events": "events"
+    },
+    "events": [],
+    "command": ["pingCommand", "banCommand", "muteCommand", "avatarCommand"],
+    "commandGroup": []
+  },
+
+  "require": {
+    "plugin": [
+      ""
+    ],
+    "packages": [
+      "discord.py",
+      "aiohttp",
+      "colorama"
+    ]
+  }
+}

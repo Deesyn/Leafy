@@ -1,0 +1,35 @@
+import yaml
+import discord
+from discord.ext import commands
+from Azurite.src.utils.path_manager import path
+
+from Azurite.src.local import _add_intents
+
+
+def main():
+    with open(path.config(), 'r', encoding='utf-8') as yml_data:
+        config = yaml.load(yml_data, Loader=yaml.SafeLoader)
+    intents = discord.Intents.default()
+
+    if 'all' in config['discord']['intents']:
+        intents = discord.Intents.all()
+    else:
+        _add_intents(config=config, intents=intents)
+
+    if config['discord']['auto_sharded'].lower() == 'enable' or config['discord']['auto_sharded'] == True:
+        app = commands.AutoShardedBot(
+            command_prefix=config['discord'].get('command_prefix', '!'),
+            intents=intents,
+        )
+    else:
+        app = commands.Bot(
+            command_prefix=config['discord'].get('command_prefix', '!'),
+            intents=intents,
+        )
+    @app.event
+    async def on_ready():
+        from Azurite.src.loader.loader import Loader
+        init_loader = Loader(app=app)
+        await init_loader.start_loader()
+        total = await app.tree.sync()
+    app.run(config['discord']['bot_token'])

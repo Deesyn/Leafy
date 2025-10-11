@@ -1,0 +1,94 @@
+# MIT License
+# Copyright (c) 2025 kenftr
+
+import os
+import sys
+import asyncio
+from typing import Optional
+from discord.ext import commands
+
+from Azurite.src.utils.config import Config
+from Azurite.src.utils.extract import extract
+from Azurite.src.utils.path_manager import path
+
+from Azurite.src.loader.load.load_object import _load_object
+from Azurite.src.loader.load._load_mapping import _load_mapping
+from Azurite.src.loader.load.load_main_event import _load_main_event
+from Azurite.src.loader.utils.check_python_version import _check_python_version
+class Loader:
+    def __init__(self, app):
+        self.app: Optional[commands.Bot] = app
+
+        # Loader settings
+        self.multi_thread = Config.Loader.multi_thread()
+        self.max_thread = Config.Loader.max_thread()
+        self.timeout = Config.Loader.timed_out()
+
+        # Allow settings
+        self.allow_prefix = Config.Loader.Allow.prefix_command()
+        self.allow_slash = Config.Loader.Allow.slash_command()
+        self.allow_group = Config.Loader.Allow.group_command()
+        self.allow_events = Config.Loader.Allow.events()
+        self.allowed_formats = Config.Loader.Allow.plugin_format()
+
+        # Script loader settings
+        self.script_loader_enabled = Config.Loader.ScriptLoader.status()
+        self.disabled_scripts = Config.Loader.ScriptLoader.disable_script_list()
+
+
+
+
+
+
+
+    async def _load_plugin(self, plugin_name: str, plugin_source):
+        try:
+            sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
+            mapping = _load_mapping(plugin_name, plugin_source)
+            mapping_paths = mapping["mapping"]["path"]
+
+            self.prefix_path = mapping_paths["prefix_command_path"]
+            self.slash_path = mapping_paths["slash_command_path"]
+            self.event_path = mapping_paths["event_command_path"]
+            self.command_group_path = mapping_paths["command_group_path"]
+
+            self.prefix_commands = mapping["mapping"]["prefix_command_list"]
+            self.slash_commands = mapping["mapping"]["slash_command_list"]
+            self.event_commands = mapping["mapping"]["events_list"]
+            self.group_commands = mapping["mapping"]["command_group_list"]
+
+            if not _check_python_version(plugin_name, plugin_source):
+                print(f"[Loader] Skipped '{plugin_name}' (Python version incompatible)")
+                return
+
+            await asyncio.gather(
+                _load_object(self.app,self.slash_path,plugin_name, "slash", self.slash_commands),
+                _load_object(self.app,self.event_path,plugin_name, "event", self.event_commands),
+                _load_object(self.app,self.command_group_path,plugin_name, "group", self.group_commands)
+            )
+
+        except Exception as e:
+            print(f"[Loader] Failed to load plugin '{plugin_name}': {e}")
+
+
+
+    async def start_loader(self):
+        for file in os.listdir(path.plugin()):
+            file_path = os.path.join(path.plugin(), file)
+
+            if file.endswith(".zip"):
+                data = extract.zip(file_path)
+                await _load_main_event("archive", file, data)
+                await self._load_plugin(plugin_name=file,
+                                        plugin_source=file)
+
+            elif file.endswith(".rar"):
+                data = extract.rar(file_path)
+                await _load_main_event("archive", file, data)
+                await self._load_plugin(plugin_name=file,
+                                        plugin_source=file)
+
+            elif os.path.isdir(file_path):
+                await _load_main_event("dir", file, file)
+                await self._load_plugin(plugin_name= file,
+                                        plugin_source= file)

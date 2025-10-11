@@ -1,0 +1,6 @@
+mapping_file: "mapping.json"
+format: "Azurite-mapping-v2" # Format List        |
+                             # Azurite-mapping-v1 | The old mapping format does not support as many features as v2
+                             # Azurite-mapping-v2 | Current version
+                             # Auto-detect        | Automatically detect the format of mapping.json
+

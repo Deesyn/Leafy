@@ -1,0 +1,53 @@
+#     ___              _ __
+#    / _ |_____ ______(_) /____
+#   / __ /_ / // / __/ / __/ -_)
+#  /_/ |_/__|_,_/_/ /_/\__/\__/
+#
+
+
+discord:
+  # You can create a bot here: https://discord.com/developers/applications
+  bot_token: ''
+  #Add the intents you want. If you're not sure, I recommend leaving it as 'all'.
+  intents:
+    - all
+  # Auto_sharded should only be enabled when the bot is in over 2000 servers
+  auto_sharded: disable
+  # The command prefix. For example: if the prefix is set to !, the command will be !{command}
+  command_prefix: '!'
+  # This section relates to where the slash commands will be synchronized. If set to 'all', it applies to all guilds the bot participates in, or you can set a specific guild ID.
+  sync: "all_guilds"
+
+Loader:
+  multil_thread: disable # enable / disable
+  max_thread: -1 # -1 : disable
+
+  timed_out: 5000 #5000ms = 5s
+
+  allow:
+    prefix_command: true # If you set it to false, the default loader will not add the prefix commands to the bot.
+    slash_command: true # If you set it to false, the default loader will not add the slash commands to the bot.
+    group_command: true # If you set it to false, the default loader will not add the group commands to the bot.
+    events: true # If you set it to false, the default loader will not add the events to the bot.
+
+    # Important
+    # To export as RAR, please install WinRAR.
+    plugin_format: ['folder','zip','rar'] # format type |
+                                           # .zip        | zip file
+                                           # .rar        | rar file
+                                           # folder      | folder
+  script_loader:
+    enable: enable
+    disable_script_list: []
+
+
+
+
+Azurite:
+  package:
+    embed_format: 'discohook.org'
+
+
+orther:
+  version: v2
+  debug: disable
