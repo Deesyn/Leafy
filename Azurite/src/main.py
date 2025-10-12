@@ -6,6 +6,7 @@ from discord.ext import commands
 from Azurite.src.local import _add_intents
 from Azurite.src.utils.path_manager import path
 from Azurite.src.utils.Local_Logger import Logger
+from Azurite.src.utils.token_valid_check import _token_valid_check
 
 def main():
     with open(path.config(), 'r', encoding='utf-8') as yml_data:
@@ -40,4 +41,10 @@ def main():
         await app.tree.sync()
         Logger.INFO(message=f"Sync done after {round(time.time() - stop_time, 2)}s!")
         Logger.INFO(message=f'The startup process takes a total: {round(time.time() - start_time,2)}s!')
-    app.run(config['discord']['bot_token'])
+
+    if _token_valid_check(config['discord']['bot_token']) == True:
+        app.run(config['discord']['bot_token'])
+    else:
+        Logger.ERROR(f"Invalid token!")
+        Logger.INFO(f"Stop process!")
+        return
