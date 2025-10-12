@@ -43,6 +43,7 @@ class Loader:
             Logger.LOADER(f"Load plugin: {plugin_name}")
             sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
             mapping = _load_mapping(plugin_name, plugin_source)
+            mapping_config = Config.Mapping()
             mapping_paths = mapping["mapping"]["path"]
 
             self.prefix_path = mapping_paths["prefix_command_path"]
@@ -54,7 +55,9 @@ class Loader:
             self.slash_commands = mapping["mapping"]["slash_command_list"]
             self.event_commands = mapping["mapping"]["events_list"]
             self.group_commands = mapping["mapping"]["command_group_list"]
-
+            if mapping_config['format'] != mapping['mapping']['format']:
+                Logger.LOADER(f"Plugin {plugin_name} uses {mapping['mapping']['format']} format instead of required {mapping_config['format']}. Skipping...")
+                return
             if not _check_python_version(plugin_name, plugin_source):
                 Logger.WARN(f"Skipped {plugin_name} (Python version incompatible)")
                 return
