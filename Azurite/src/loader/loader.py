@@ -76,14 +76,8 @@ class Loader:
             if Config.Loader.fast_module():
                 await asyncio.gather(*tasks)
             else:
-                if self.allow_prefix:
-                    await _load_object(self.app, self.prefix_path, plugin_name, "prefix", self.prefix_commands)
-                if self.allow_slash:
-                    await _load_object(self.app, self.slash_path, plugin_name, "slash", self.slash_commands)
-                if self.allow_events:
-                    await _load_object(self.app, self.event_path, plugin_name, "event", self.event)
-                if self.allow_group:
-                    await _load_object(self.app, self.command_group_path, plugin_name, "group", self.group_commands)
+                for task in tasks:
+                    await task
 
         except Exception as e:
             sys.path.remove(os.path.join(path.plugin(), plugin_name))
@@ -103,7 +97,7 @@ class Loader:
             else:
                 Logger.INFO(f"└── {plugin}")
         Logger.INFO(f"Total plugin: {len_plugin_list}")
-        if Config.Loader.max_thread() == True:
+        if Config.Loader.multi_thread() == True:
             data = thread_calculator(plugins_list=plugin_list)
             total_thread = data['total_thread']
             plugin_per_thread = data['plugin_per_thread']
