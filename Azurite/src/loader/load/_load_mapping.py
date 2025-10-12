@@ -1,6 +1,8 @@
 import os
 import json
+from functools import lru_cache
 from Azurite.src.utils.path_manager import path
+@lru_cache(maxsize=3)
 def _load_mapping(plugin_name: str, plugin_source):
     try:
         if hasattr(plugin_source, "open"):
@@ -10,4 +12,4 @@ def _load_mapping(plugin_name: str, plugin_source):
         with open(mapping_path, "r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
-        raise RuntimeError(f"[Loader] Failed to load mapping.json for '{plugin_name}': {e}")
+        raise RuntimeError(f"Failed to load mapping.json for '{plugin_name}': {e}")

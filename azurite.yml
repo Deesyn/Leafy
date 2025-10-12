@@ -7,7 +7,7 @@
 
 discord:
   # You can create a bot here: https://discord.com/developers/applications
-  bot_token: ''
+  bot_token: '' # Enter your bot token here
   #Add the intents you want. If you're not sure, I recommend leaving it as 'all'.
   intents:
     - all

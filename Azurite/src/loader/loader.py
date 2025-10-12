@@ -10,6 +10,7 @@ from discord.ext import commands
 from Azurite.src.utils.config import Config
 from Azurite.src.utils.extract import extract
 from Azurite.src.utils.path_manager import path
+from Azurite.src.utils.Local_Logger import Logger
 
 from Azurite.src.loader.load.load_object import _load_object
 from Azurite.src.loader.load._load_mapping import _load_mapping
@@ -37,12 +38,9 @@ class Loader:
 
 
 
-
-
-
-
     async def _load_plugin(self, plugin_name: str, plugin_source):
         try:
+            Logger.LOADER(f"Load plugin: {plugin_name}")
             sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
             mapping = _load_mapping(plugin_name, plugin_source)
             mapping_paths = mapping["mapping"]["path"]
@@ -58,20 +56,33 @@ class Loader:
             self.group_commands = mapping["mapping"]["command_group_list"]
 
             if not _check_python_version(plugin_name, plugin_source):
+                Logger.WARN(f"Skipped {plugin_name} (Python version incompatible)")
                 return
-
             await asyncio.gather(
+                _load_object(self.app,self.prefix_path,plugin_name, "prefix", self.prefix_commands),
                 _load_object(self.app,self.slash_path,plugin_name, "slash", self.slash_commands),
                 _load_object(self.app,self.event_path,plugin_name, "event", self.event_commands),
                 _load_object(self.app,self.command_group_path,plugin_name, "group", self.group_commands)
             )
 
         except Exception as e:
+            sys.path.remove(os.path.join(path.plugin(), plugin_name))
+            Logger.ERROR(message=f"Failed to load {plugin_name}! Skip")
             raise e
-
+        finally:
+            sys.path.remove(os.path.join(path.plugin(), plugin_name))
 
 
     async def start_loader(self):
+        plugin_list = [f for f in os.listdir(path.plugin())]
+        len_plugin_list = len(plugin_list)
+        Logger.INFO("Loading...")
+        for i, plugin in enumerate(plugin_list):
+            if i < len(plugin_list) - 1:
+                Logger.INFO(f"├── {plugin}")
+            else:
+                Logger.INFO(f"└── {plugin}")
+        Logger.INFO(f"Total plugin: {len_plugin_list}")
         for file in os.listdir(path.plugin()):
             file_path = os.path.join(path.plugin(), file)
 

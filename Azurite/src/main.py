@@ -1,10 +1,11 @@
+import time
+
 import yaml
 import discord
 from discord.ext import commands
-from Azurite.src.utils.path_manager import path
-
 from Azurite.src.local import _add_intents
-
+from Azurite.src.utils.path_manager import path
+from Azurite.src.utils.Local_Logger import Logger
 
 def main():
     with open(path.config(), 'r', encoding='utf-8') as yml_data:
@@ -29,7 +30,14 @@ def main():
     @app.event
     async def on_ready():
         from Azurite.src.loader.loader import Loader
+        start_time = time.time()
+        Logger.LOADER(message=f"Starting Loader..")
         init_loader = Loader(app=app)
         await init_loader.start_loader()
-        total = await app.tree.sync()
+        stop_time = time.time()
+        Logger.LOADER(message=f"Load all plugin in {round(stop_time - start_time, 5)}s!")
+        Logger.INFO(message=f"Waiting for sync...")
+        await app.tree.sync()
+        Logger.INFO(message=f"Sync done after {round(time.time() - stop_time, 2)}s!")
+        Logger.INFO(message=f'The startup process takes a total: {round(time.time() - start_time,2)}s!')
     app.run(config['discord']['bot_token'])

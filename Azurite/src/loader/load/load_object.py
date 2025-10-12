@@ -15,7 +15,6 @@ async def _load_object(app: commands.Bot,cog_path,
 
             if path_name == 'slash':
                 module = importlib.import_module(f"{cog_path}.{file_name}")
-
             cls = getattr(module, class_name)
             params = {}
 
@@ -42,7 +41,8 @@ async def _load_object(app: commands.Bot,cog_path,
                                 params[key] = app
                             else:
                                 params[key] = None
-
+            if path_name == 'prefix':
+                await app.add_cog(cls(**params))
             if path_name == "slash":
                 await app.add_cog(cls(**params))
             elif path_name == "event":

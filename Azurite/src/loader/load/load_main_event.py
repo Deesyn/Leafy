@@ -1,9 +1,10 @@
 import os
 import sys
 import asyncio
-import importlib
-from Azurite.src.loader.load._load_mapping import _load_mapping
+from Azurite.src.loader.utils.import_module import _import_module
 from Azurite.src.utils.path_manager import path
+from Azurite.src.loader.load._load_mapping import _load_mapping
+
 async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
     mapping = _load_mapping(plugin_name= plugin_name if plugin_type == "dir" else None,
                             plugin_source= plugin_source)
@@ -15,7 +16,8 @@ async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
 
     sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
     module_name = event_file.replace(".py", "")
-    module = importlib.import_module(module_name)
+    module_path = os.path.join(path.plugin(),plugin_name,event_file)
+    module = _import_module(module_name,str(module_path))
 
     for function_name in [start_func_name, stop_func_name]:
         function = getattr(module, function_name, None)
@@ -27,3 +29,4 @@ async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
                     function()
             except Exception as e:
                 raise RuntimeError(e)
+    sys.path.remove(os.path.join(path.plugin(), plugin_name))
