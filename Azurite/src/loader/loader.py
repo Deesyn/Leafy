@@ -61,12 +61,18 @@ class Loader:
             if not _check_python_version(plugin_name, plugin_source):
                 Logger.WARN(f"Skipped {plugin_name} (Python version incompatible)")
                 return
-            await asyncio.gather(
-                _load_object(self.app,self.prefix_path,plugin_name, "prefix", self.prefix_commands),
-                _load_object(self.app,self.slash_path,plugin_name, "slash", self.slash_commands),
-                _load_object(self.app,self.event_path,plugin_name, "event", self.event_commands),
-                _load_object(self.app,self.command_group_path,plugin_name, "group", self.group_commands)
-            )
+            if Config.Loader.fast_module():
+                await asyncio.gather(
+                    _load_object(self.app,self.prefix_path,plugin_name, "prefix", self.prefix_commands),
+                    _load_object(self.app,self.slash_path,plugin_name, "slash", self.slash_commands),
+                    _load_object(self.app,self.event_path,plugin_name, "event", self.event_commands),
+                    _load_object(self.app,self.command_group_path,plugin_name, "group", self.group_commands)
+                )
+            else:
+                await _load_object(self.app,self.prefix_path,plugin_name, "prefix", self.prefix_commands)
+                await _load_object(self.app,self.prefix_path,plugin_name, "slash", self.prefix_commands)
+                await _load_object(self.app, self.prefix_path, plugin_name, "event", self.prefix_commands)
+                await _load_object(self.app, self.prefix_path, plugin_name, "group", self.prefix_commands)
 
         except Exception as e:
             sys.path.remove(os.path.join(path.plugin(), plugin_name))

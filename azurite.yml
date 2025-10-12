@@ -20,7 +20,18 @@ discord:
 
 Loader:
   multil_thread: disable # enable / disable
-  max_thread: -1 # -1 : disable
+  max_thread: -1 # -1 : auto
+
+
+  fast_module: disable
+  #When this option is enabled, Azurite automatically calculates how to distribute plugins across threads each time a plugin is loaded.
+  #It splits the plugin into multiple threads based on its modules, allowing faster loading.
+  #However, note that this process will temporarily increase CPU usage during startup.
+
+  #note
+  #Do not enable this option when multithreading is already active.
+  #Although it can make plugins load faster, it will significantly increase CPU usage.
+
 
   timed_out: 5000 #5000ms = 5s
 
@@ -44,7 +55,7 @@ Loader:
 
 
 Azurite:
-  package:
+  SDK:
     embed_format: 'discohook.org'
 
 

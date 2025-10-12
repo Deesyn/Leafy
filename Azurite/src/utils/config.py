@@ -80,7 +80,9 @@ class Config:
         @staticmethod
         def max_thread() -> int:
             return Config.data.get('Loader', {}).get('max_thread', -1)
-
+        @staticmethod
+        def fast_module() -> bool:
+            return _to_bool(Config.data.get('Loader', {}).get('fast_module', False))
         @staticmethod
         def timed_out() -> int:
             return Config.data.get('Loader', {}).get('timed_out', 5000)

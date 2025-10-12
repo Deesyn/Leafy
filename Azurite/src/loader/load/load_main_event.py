@@ -1,11 +1,12 @@
 import os
 import sys
 import asyncio
-from Azurite.src.loader.utils.import_module import _import_module
-from Azurite.src.utils.path_manager import path
-from Azurite.src.loader.load._load_mapping import _load_mapping
-
 async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
+
+    from Azurite.src.utils.path_manager import path
+    from Azurite.src.loader.load._load_mapping import _load_mapping
+    from Azurite.src.loader.utils.import_module import _import_module
+
     mapping = _load_mapping(plugin_name= plugin_name if plugin_type == "dir" else None,
                             plugin_source= plugin_source)
     mod_info = mapping.get("module", {})
