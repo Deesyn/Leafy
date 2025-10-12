@@ -1,3 +1,72 @@
+import threading
+import os
+import os
+import sys
 import asyncio
-async def multil_thread_handler(plugin_list,total_thread,plugin_per_thread):
-    for i in plugin_list:
+from typing import Optional
+from discord.ext import commands
+
+from Azurite.src.utils.config import Config
+from Azurite.src.utils.path_manager import path
+from Azurite.src.utils.Local_Logger import Logger
+from Azurite.src.utils.run_async_def import run_async
+from Azurite.src.utils.thread_calculator import thread_calculator
+
+from Azurite.src.loader.load.load_object import _load_object
+from Azurite.src.loader.load._load_mapping import _load_mapping
+from Azurite.src.loader.utils.check_python_version import _check_python_version
+async def _handler(app,plugin):
+    for plugin_name in plugin:
+        try:
+            Logger.LOADER(f"Load plugin: {plugin_name}")
+            sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
+            mapping = _load_mapping(plugin_name, plugin_name)
+            mapping_config = Config.Mapping()
+            mapping_paths = mapping["mapping"]["path"]
+
+            prefix_path = mapping_paths["prefix_command_path"]
+            slash_path = mapping_paths["slash_command_path"]
+            event_path = mapping_paths["event_command_path"]
+            command_group_path = mapping_paths["command_group_path"]
+
+            prefix_commands = mapping["mapping"]["prefix_command_list"]
+            slash_commands = mapping["mapping"]["slash_command_list"]
+            event_commands = mapping["mapping"]["events_list"]
+            group_commands = mapping["mapping"]["command_group_list"]
+            if mapping_config['format'] != mapping['mapping']['format']:
+                Logger.LOADER(
+                    f"Plugin {plugin_name} uses {mapping['mapping']['format']} format instead of required {mapping_config['format']}. Skipping...")
+                return
+            if not _check_python_version(plugin_name, plugin_source):
+                Logger.WARN(f"Skipped {plugin_name} (Python version incompatible)")
+                return
+            if Config.Loader.fast_module():
+                await asyncio.gather(
+                    _load_object(app, prefix_path, plugin_name, "prefix", prefix_commands),
+                    _load_object(app, slash_path, plugin_name, "slash", slash_commands),
+                    _load_object(app, event_path, plugin_name, "event", event_commands),
+                    _load_object(app, command_group_path, plugin_name, "group", group_commands)
+                )
+            else:
+                await _load_object(app, prefix_path, plugin_name, "prefix", prefix_commands)
+                await _load_object(app, prefix_path, plugin_name, "slash", prefix_commands)
+                await _load_object(app, prefix_path, plugin_name, "event", prefix_commands)
+                await _load_object(app, prefix_path, plugin_name, "group", prefix_commands)
+
+        except Exception as e:
+            sys.path.remove(os.path.join(path.plugin(), plugin_name))
+            Logger.ERROR(message=f"Failed to load {plugin_name}! Skip")
+            raise e
+        finally:
+            sys.path.remove(os.path.join(path.plugin(), plugin_name))
+
+def multil_thread_handler(app,plugin_list,total_thread,plugin_per_thread):
+    threads = []
+    for i in range(0,len(plugin_list),plugin_per_thread):
+        plugin_group = plugin_list[i:i+plugin_per_thread]
+        t = threading.Thread(target=run_async,args=(_handler(app,plugin_group),))
+        threads.append(t)
+        if len(threads) > total_thread:
+            break
+    for t in threads:
+        t.start()

@@ -1,0 +1,20 @@
+#     ___              _ __
+#    / _ |_____ ______(_) /____
+#   / __ /_ / // / __/ / __/ -_)
+#  /_/ |_/__|_,_/_/ /_/\__/\__/
+
+
+thread_calculator:
+  cpu_cores:
+    calculation: "logical + physical"
+
+  plugin_count:
+    calculation: "len(plugins_list)"
+
+  threads_allocation:
+    if_plugins_more_than_cpu:
+      plugin_per_thread: "math.ceil(plugin_count / cpu_cores)"
+      total_threads: "cpu_cores"
+    if_cpu_more_or_equal_plugins:
+      plugin_per_thread: 1
+      total_threads: "plugin_count"

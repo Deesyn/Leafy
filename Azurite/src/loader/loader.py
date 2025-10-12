@@ -11,11 +11,15 @@ from Azurite.src.utils.config import Config
 from Azurite.src.utils.extract import extract
 from Azurite.src.utils.path_manager import path
 from Azurite.src.utils.Local_Logger import Logger
+from Azurite.src.utils.thread_calculator import thread_calculator
 
 from Azurite.src.loader.load.load_object import _load_object
 from Azurite.src.loader.load._load_mapping import _load_mapping
 from Azurite.src.loader.load.load_main_event import _load_main_event
 from Azurite.src.loader.utils.check_python_version import _check_python_version
+from Azurite.src.loader.utils.multil_thread_handler import multil_thread_handler
+
+
 class Loader:
     def __init__(self, app):
         self.app: Optional[commands.Bot] = app
@@ -92,22 +96,28 @@ class Loader:
             else:
                 Logger.INFO(f"└── {plugin}")
         Logger.INFO(f"Total plugin: {len_plugin_list}")
-        for file in os.listdir(path.plugin()):
-            file_path = os.path.join(path.plugin(), file)
+        if Config.Loader.max_thread() == True:
+            data = thread_calculator(plugins_list=plugin_list)
+            total_thread = data['total_thread']
+            plugin_per_thread = data['plugin_per_thread']
+            multil_thread_handler(app=self.app,plugin_list=plugin_list,total_thread=total_thread,plugin_per_thread=plugin_per_thread)
+        else:
+            for file in os.listdir(path.plugin()):
+                file_path = os.path.join(path.plugin(), file)
 
-            if file.endswith(".zip"):
-                data = extract.zip(file_path)
-                await _load_main_event("archive", file, data)
-                await self._load_plugin(plugin_name=file,
-                                        plugin_source=file)
+                if file.endswith(".zip"):
+                    data = extract.zip(file_path)
+                    await _load_main_event("archive", file, data)
+                    await self._load_plugin(plugin_name=file,
+                                            plugin_source=file)
 
-            elif file.endswith(".rar"):
-                data = extract.rar(file_path)
-                await _load_main_event("archive", file, data)
-                await self._load_plugin(plugin_name=file,
-                                        plugin_source=file)
+                elif file.endswith(".rar"):
+                    data = extract.rar(file_path)
+                    await _load_main_event("archive", file, data)
+                    await self._load_plugin(plugin_name=file,
+                                            plugin_source=file)
 
-            elif os.path.isdir(file_path):
-                await _load_main_event("dir", file, file)
-                await self._load_plugin(plugin_name= file,
-                                        plugin_source= file)
+                elif os.path.isdir(file_path):
+                    await _load_main_event("dir", file, file)
+                    await self._load_plugin(plugin_name= file,
+                                            plugin_source= file)
