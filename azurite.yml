@@ -56,8 +56,17 @@ Loader:
 
 
 Azurite:
+  AzuriteProxy:
+    status: disable
+    address: 0.0.0.0
+    port: random     
+  # Azurite Proxy doesn’t add any security — it’s designed to help you track and log all request traffic.
   SDK:
-    embed_format: 'discohook.org'
+    embed_format: 'discohook'
+
+    #| Support       | Type             |
+    #| dischook      | Json             |
+    #| sapphire      | Json             |
 
 
 orther:

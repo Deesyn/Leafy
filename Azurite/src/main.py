@@ -4,7 +4,7 @@ import yaml
 import discord
 from discord.ext import commands
 from Azurite.src.local import _add_intents
-from Azurite.src.utils.path_manager import path
+from Azurite.src.utils.file_handler.path_manager import path
 from Azurite.src.utils.Local_Logger import Logger
 from Azurite.src.utils.token_valid_check import _token_valid_check
 

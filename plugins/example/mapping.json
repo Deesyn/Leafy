@@ -47,6 +47,14 @@
           "path": "ping_mapping.json"
         }
 
+      },
+      {
+        "file_name": "mute_command.py",
+        "class": "mute_command",
+        "custom_mapping": {
+          "enable": true,
+          "path": "mute_mapping.json"
+        }
       }
     ],
     "command_group_list": [],

@@ -3,8 +3,8 @@ import sys
 import asyncio
 async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
 
-    from Azurite.src.utils.path_manager import path
-    from Azurite.src.loader.load._load_mapping import _load_mapping
+    from Azurite.src.utils.file_handler.path_manager import path
+    from Azurite.src.loader.load.load_mapping import _load_mapping
     from Azurite.src.loader.utils.import_module import _import_module
 
     mapping = _load_mapping(plugin_name= plugin_name if plugin_type == "dir" else None,

@@ -6,18 +6,19 @@ import asyncio
 from typing import Optional
 from discord.ext import commands
 
-from Azurite.src.utils.config import Config
-from Azurite.src.utils.extract import extract
-from Azurite.src.utils.path_manager import path
+from Azurite.src.utils.file_handler.config import Config
+from Azurite.src.utils.file_handler.extract import extract
+from Azurite.src.utils.file_handler.path_manager import path
 from Azurite.src.utils.Local_Logger import Logger
-from Azurite.src.utils.thread_calculator import thread_calculator
+from Azurite.src.utils.calculator.thread_calculator import thread_calculator
 
 from Azurite.src.loader.load.load_object import _load_object
-from Azurite.src.loader.load._load_mapping import _load_mapping
+from Azurite.src.loader.load.load_mapping import _load_mapping
 from Azurite.src.loader.load.load_main_event import _load_main_event
+from Azurite.src.loader.utils.get_plugin_info import _get_plugin_info
 from Azurite.src.loader.utils.check_python_version import _check_python_version
-from Azurite.src.loader.utils.multil_thread_handler import multil_thread_handler
-
+from Azurite.src.loader.handler.launch_multi_thread import _launch_multi_thread
+from Azurite.src.loader.handler.download_package import download_package
 
 class Loader:
     def __init__(self, app):
@@ -58,6 +59,10 @@ class Loader:
             self.slash_commands = mapping["mapping"]["slash_command_list"]
             self.event = mapping["mapping"]["events_list"]
             self.group_commands = mapping["mapping"]["command_group_list"]
+
+            _,_,_,self.packages_list = _get_plugin_info(plugin_name=plugin_name, plugin_source=plugin_name)
+            download_package(package_list=self.packages_list)
+
             if mapping_config['format'] != mapping['mapping']['format']:
                 Logger.LOADER(f"Plugin {plugin_name} uses {mapping['mapping']['format']} format instead of required {mapping_config['format']}. Skipping...")
                 return
@@ -88,7 +93,7 @@ class Loader:
 
 
     async def start_loader(self):
-        plugin_list = [f for f in os.listdir(path.plugin())]
+        plugin_list = [f for f in os.listdir(path.plugin()) if f != 'plugin_configs']
         len_plugin_list = len(plugin_list)
         Logger.INFO("Loading...")
         for i, plugin in enumerate(plugin_list):
@@ -101,9 +106,11 @@ class Loader:
             data = thread_calculator(plugins_list=plugin_list)
             total_thread = data['total_thread']
             plugin_per_thread = data['plugin_per_thread']
-            multil_thread_handler(app=self.app,plugin_list=plugin_list,total_thread=total_thread,plugin_per_thread=plugin_per_thread)
+            _launch_multi_thread(app=self.app,plugin_list=plugin_list,total_thread=total_thread,plugin_per_thread=plugin_per_thread)
         else:
             for file in os.listdir(path.plugin()):
+                if file == "plugin_configs":
+                    continue
                 file_path = os.path.join(path.plugin(), file)
 
                 if file.endswith(".zip"):

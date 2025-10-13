@@ -1,7 +1,14 @@
+import sys
+import inspect
 from colorama import Fore
 
 class Logger():
     base_logger = None
-    @classmethod
-    def _set_base(cls,logger):
-        cls.base_logger = logger
+    @staticmethod
+    def _get_caller_file():
+        frame = inspect.stack()[1]
+        caller_file = frame.filename
+        caller_path = caller_file.split("\\")
+        for i,dir in enumerate(caller_path):
+            if dir.lower() == 'plugins':
+                return caller_path[i+1]

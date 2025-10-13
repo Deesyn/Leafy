@@ -38,9 +38,8 @@ def _to_bool(value) -> bool:
 
 @lru_cache(maxsize=1)
 def _load_yaml() -> dict:
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','..'))
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','..','..'))
     config_path = os.path.join(base_dir, 'azurite.yml')
-
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Config file not found: {config_path}")
 
@@ -124,7 +123,7 @@ class Config:
 
     @staticmethod
     def Mapping() -> dict:
-        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..','..'))
         mapping_config_path = os.path.join(base_dir, 'config','mapping.yml')
         if not os.path.exists(mapping_config_path):
             return None

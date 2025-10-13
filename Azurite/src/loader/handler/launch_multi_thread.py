@@ -1,19 +1,15 @@
 import threading
 import os
-import os
 import sys
 import asyncio
-from typing import Optional
-from discord.ext import commands
 
-from Azurite.src.utils.config import Config
-from Azurite.src.utils.path_manager import path
+from Azurite.src.utils.file_handler.config import Config
+from Azurite.src.utils.file_handler.path_manager import path
 from Azurite.src.utils.Local_Logger import Logger
 from Azurite.src.utils.run_async_def import run_async
-from Azurite.src.utils.thread_calculator import thread_calculator
 
 from Azurite.src.loader.load.load_object import _load_object
-from Azurite.src.loader.load._load_mapping import _load_mapping
+from Azurite.src.loader.load.load_mapping import _load_mapping
 from Azurite.src.loader.utils.check_python_version import _check_python_version
 async def _handler(app,plugin):
     for plugin_name in plugin:
@@ -60,7 +56,7 @@ async def _handler(app,plugin):
         finally:
             sys.path.remove(os.path.join(path.plugin(), plugin_name))
 
-def multil_thread_handler(app,plugin_list,total_thread,plugin_per_thread):
+def _launch_multi_thread(app,plugin_list,total_thread,plugin_per_thread):
     threads = []
     for i in range(0,len(plugin_list),plugin_per_thread):
         plugin_group = plugin_list[i:i+plugin_per_thread]
