@@ -37,7 +37,7 @@ async def _load_object(app: commands.Bot,cog_path,
                     sig = inspect.signature(cls)
                     for key, val in mapping_data["init"]["variables"].items():
                         if key in sig.parameters:
-                            if val.lower() == "azurite.bot":
+                            if val.lower() == "moss.bot":
                                 params[key] = app
                             else:
                                 params[key] = None

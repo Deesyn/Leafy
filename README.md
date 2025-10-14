@@ -1,8 +1,8 @@
-# 📦 Azurite<br><br>
-Azurite makes creating fully-featured Discord bots fast and effortless.
-Whether you’re a beginner or an experienced developer, Azurite lets you easily manage commands, events, and configurations while keeping your bot modular and maintainable. Its plugin system allows you to quickly add new features, whether they come from the community or your own custom code.
+# 📦 Moss<br><br>
+Moss makes creating fully-featured Discord bots fast and effortless.
+Whether you’re a beginner or an experienced developer, Moss lets you easily manage commands, events, and configurations while keeping your bot modular and maintainable. Its plugin system allows you to quickly add new features, whether they come from the community or your own custom code.
 
-With Azurite, you can:
+With Moss, you can:
 
 Seamlessly integrate community or custom plugins.
 
@@ -10,9 +10,8 @@ Build complex functionalities using a clear and intuitive SDK.
 
 Keep your bot organized, scalable, and easy to maintain.
 
-Azurite helps you focus on building amazing bots, not worrying about boilerplate code or repetitive setup.
+Moss helps you focus on building amazing bots, not worrying about boilerplate code or repetitive setup.
 
-![Azurite-logo](https://images-ext-1.discordapp.net/external/Mx47LACNL-pWIds4e5nKO2ppF5sYNgCaynN7lr36a7o/%3Fsize%3D1024/https/cdn.discordapp.com/icons/1405529842983899236/ebb8aea97de5a20333e54b24ec090cc5.png?format=png&quality=lossless)
 
 # 🗒️ Requirements<br>
 - **Python**: 3.8+
@@ -20,11 +19,11 @@ Azurite helps you focus on building amazing bots, not worrying about boilerplate
 
 # 🔖 Docs<br>
 ## 🗒️ EN:
-- How to make a plugin?: [click_here](https://github.com/Notkenftr/Azurite/tree/main/docs/EN/make_a_plugin)
-- How to make a script?: [click_here](https://github.com/Notkenftr/Azurite/tree/main/docs/EN/make_a_script)
+- How to make a plugin?: [click_here](https://github.com/Notkenftr/Moss/tree/main/docs/EN/make_a_plugin)
+- How to make a script?: [click_here](https://github.com/Notkenftr/Moss/tree/main/docs/EN/make_a_script)
 ## 🗒️ VI:
-- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/Azurite/tree/main/docs/VI/make_a_plugin)
-- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/Azurite/docs/tree/main/VI/make_a_script)
+- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/Moss/tree/main/docs/VI/make_a_plugin)
+- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/Moss/docs/tree/main/VI/make_a_script)
 # 📍 LICENSE
 
 MIT License
