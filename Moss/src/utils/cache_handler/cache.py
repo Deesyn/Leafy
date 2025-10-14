@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 class Cache:
-    cache_dir = Path(__file__).resolve().parent.parent.parent.parent / "cache"
+    cache_dir = Path(__file__).resolve().parent.parent.parent.parent.parent / "cache"
 
     @staticmethod
     def _ensure_dir() -> None:

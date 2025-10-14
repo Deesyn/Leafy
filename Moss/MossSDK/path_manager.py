@@ -8,6 +8,6 @@ class path():
             Returns the exact path of the azurite config folder
         VI:
             Trả về path chính xác của folder config của azurite
-        :return: Azurite config path
+        :return: Moss config path
         """
         return (Path(__file__).parent.parent.parent / "config").resolve()

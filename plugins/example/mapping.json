@@ -29,7 +29,7 @@
   },
 
   "mapping": {
-    "format": "Azurite-mapping-v2",
+    "format": "Moss-mapping-v2",
     "path": {
       "prefix_command_path": "prefix_command",
       "slash_command_path": "slash_command",

@@ -3,7 +3,7 @@ import json
 import inspect
 import importlib
 from discord.ext import commands
-from Azurite.src.utils.file_handler.path_manager import path
+from Moss.src.utils.file_handler.path_manager import path
 async def _load_object(app: commands.Bot,cog_path,
                        plugin_name: str, path_name: str,
                        command_list: list):

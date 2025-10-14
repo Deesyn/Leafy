@@ -39,7 +39,7 @@ def _to_bool(value) -> bool:
 @lru_cache(maxsize=1)
 def _load_yaml() -> dict:
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..','..','..'))
-    config_path = os.path.join(base_dir, 'azurite.yml')
+    config_path = os.path.join(base_dir, 'moss.yml')
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Config file not found: {config_path}")
 
@@ -118,7 +118,7 @@ class Config:
         class Package:
             @staticmethod
             def embed_format() -> str:
-                return Config.data.get('Azurite', {}).get('package', {}).get('embed_format', 'default')
+                return Config.data.get('Moss', {}).get('package', {}).get('embed_format', 'default')
 
 
     @staticmethod

@@ -1,5 +1,5 @@
 from discord.ext import commands
-from Azurite.AzuriteSDK import config
+from Moss.MossSDK import config
 
 async def on_start():
     print('Đã nhận on start')

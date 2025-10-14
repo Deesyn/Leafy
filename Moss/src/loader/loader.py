@@ -1,24 +1,33 @@
 # MIT License
 # Copyright (c) 2025 kenftr
+
+# Built-in Imports
 import os
 import sys
 import asyncio
 from typing import Optional
+
+# Third-Party
 from discord.ext import commands
 
-from Azurite.src.utils.file_handler.config import Config
-from Azurite.src.utils.file_handler.extract import extract
-from Azurite.src.utils.file_handler.path_manager import path
-from Azurite.src.utils.Local_Logger import Logger
-from Azurite.src.utils.calculator.thread_calculator import thread_calculator
+# Moss Utility Imports
+from Moss.src.utils.Local_Logger import Logger
+from Moss.src.utils.calculator.thread_calculator import thread_calculator
+from Moss.src.utils.file_handler.config import Config
+from Moss.src.utils.file_handler.extract import extract
+from Moss.src.utils.file_handler.path_manager import path
 
-from Azurite.src.loader.load.load_object import _load_object
-from Azurite.src.loader.load.load_mapping import _load_mapping
-from Azurite.src.loader.load.load_main_event import _load_main_event
-from Azurite.src.loader.utils.get_plugin_info import _get_plugin_info
-from Azurite.src.loader.utils.check_python_version import _check_python_version
-from Azurite.src.loader.handler.launch_multi_thread import _launch_multi_thread
-from Azurite.src.loader.handler.download_package import download_package
+# Moss Loader Imports
+from Moss.src.loader.load.load_object import _load_object
+from Moss.src.loader.load.load_mapping import _load_mapping
+from Moss.src.loader.load.load_main_event import _load_main_event
+from Moss.src.loader.utils.get_plugin_info import _get_plugin_info
+from Moss.src.loader.utils.check_python_version import _check_python_version
+from Moss.src.loader.handler.launch_multi_thread import _launch_multi_thread
+from Moss.src.loader.handler.download_package import download_package
+
+# Moss Terminal Imports
+from Moss.src.terminal import print_plugin_dir_tree
 
 class Loader:
     def __init__(self, app):
@@ -96,11 +105,7 @@ class Loader:
         plugin_list = [f for f in os.listdir(path.plugin()) if f != 'plugin_configs']
         len_plugin_list = len(plugin_list)
         Logger.INFO("Loading...")
-        for i, plugin in enumerate(plugin_list):
-            if i < len(plugin_list) - 1:
-                Logger.INFO(f"├── {plugin}")
-            else:
-                Logger.INFO(f"└── {plugin}")
+        print_plugin_dir_tree(plugin_list=plugin_list)
         Logger.INFO(f"Total plugin: {len_plugin_list}")
         if Config.Loader.multi_thread() == True:
             data = thread_calculator(plugins_list=plugin_list)

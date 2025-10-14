@@ -3,14 +3,14 @@ import os
 import sys
 import asyncio
 
-from Azurite.src.utils.file_handler.config import Config
-from Azurite.src.utils.file_handler.path_manager import path
-from Azurite.src.utils.Local_Logger import Logger
-from Azurite.src.utils.run_async_def import run_async
+from Moss.src.utils.file_handler.config import Config
+from Moss.src.utils.file_handler.path_manager import path
+from Moss.src.utils.Local_Logger import Logger
+from Moss.src.utils.run_async_def import run_async
 
-from Azurite.src.loader.load.load_object import _load_object
-from Azurite.src.loader.load.load_mapping import _load_mapping
-from Azurite.src.loader.utils.check_python_version import _check_python_version
+from Moss.src.loader.load.load_object import _load_object
+from Moss.src.loader.load.load_mapping import _load_mapping
+from Moss.src.loader.utils.check_python_version import _check_python_version
 async def _handler(app,plugin):
     for plugin_name in plugin:
         try:

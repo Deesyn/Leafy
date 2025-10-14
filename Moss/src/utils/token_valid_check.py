@@ -1,5 +1,5 @@
 import requests
-from Azurite.src.utils.Local_Logger import Logger
+from Moss.src.utils.Local_Logger import Logger
 
 def _token_valid_check(token: str):
     header = {"Authorization": f"Bot {token}"}
