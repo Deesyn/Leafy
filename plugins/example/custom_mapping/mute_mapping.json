@@ -2,7 +2,7 @@
   "init": {
     "enabled": true,
     "variables": {
-      "bot": "Azurite.bot"
+      "bot": "Moss.bot"
     }
   },
   "setting": {
