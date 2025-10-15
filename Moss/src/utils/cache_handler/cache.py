@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 
+from Moss.src.utils.Local_Logger import Logger
+
+
 class Cache:
     cache_dir = Path(__file__).resolve().parent.parent.parent.parent.parent / "cache"
 
@@ -38,7 +41,7 @@ class Cache:
             with open(Cache.cache_dir / file, mode, encoding="utf-8") as f:
                 f.write(data)
         except Exception as e:
-            print(f"Error writing cache: {e}")
+            Logger.ERROR(f"Error writing cache: {e}")
 
     @staticmethod
     def delete(file: str) -> bool:

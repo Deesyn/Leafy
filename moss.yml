@@ -34,8 +34,10 @@ Loader:
   #Do not enable this option when multithreading is already active.
   #Although it can make plugins load faster, it will significantly increase CPU usage.
 
-
-  timed_out: 5000 #5000ms = 5s
+  privilege_dropped_subprocess:
+    max_cpu: 20 # 20%
+    max_memory: 25 # 300mb
+    timed_out: 5000 #5000ms = 5s
 
   allow:
     prefix_command: true # If you set it to false, the default loader will not add the prefix commands to the bot.

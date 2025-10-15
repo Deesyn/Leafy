@@ -33,19 +33,29 @@ def _get_caller_path(self):
     frame = inspect.stack()[1]
     caller_path = Path(frame.filename).resolve()
     return caller_path
-#default variable
 
 class config():
     @staticmethod
-    def make() -> Path:
+    def make(config_data = None) -> Path:
         """
         EN:
-            Create and return the path of the config path. If it already exists, it will not be created..
-        VI:
-            Tạo và trả về path của config. Nếu đã có thì không tạo nữa mà chỉ trả về
+        Create and return the path to the config file.
+        If the config already exists, it won't be recreated.
+        You can pass either:
+            - A string containing the config content, or
+            - A path to an existing config file inside your plugin assets folder
+              (e.g. './assets/{your_file}.yml').
 
-        :returns:
-            Path: ~/.plugins/<plugin_name>/config.yml
+        VI:
+        Tạo và trả về đường dẫn đến file config.
+        Nếu file đã tồn tại, hàm sẽ không tạo lại.
+        Có thể truyền vào:
+            - Chuỗi chứa nội dung config, hoặc
+            - Đường dẫn đến file config trong thư mục assets của plugin
+              (ví dụ: './assets/{tên_file}.yml').
+
+        Returns:
+            Path: The full path to the config file (e.g. ~/.plugins/<plugin_name>/config.yml)
         """
         try:
             caller_path = _get_caller_path()

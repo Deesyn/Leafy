@@ -8,6 +8,8 @@ from Moss.src.utils.file_handler.path_manager import path
 from Moss.src.utils.Local_Logger import Logger
 from Moss.src.utils.token_valid_check import _token_valid_check
 from Moss.src.loader.handler.download_package import download_package
+
+
 def main():
     with open(path.config(), 'r', encoding='utf-8') as yml_data:
         config = yaml.load(yml_data, Loader=yaml.SafeLoader)
@@ -36,7 +38,7 @@ def main():
         init_loader = Loader(app=app)
         await init_loader.start_loader()
         stop_time = time.time()
-        Logger.LOADER(message=f"Load all plugin in {round(stop_time - start_time, 5)}s!")
+        Logger.LOADER(message=f"Load all plugin in {round(stop_time - start_time, 3)}s!")
         Logger.INFO(message=f"Waiting for sync...")
         await app.tree.sync()
         Logger.INFO(message=f"Sync done after {round(time.time() - stop_time, 2)}s!")
