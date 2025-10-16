@@ -6,20 +6,22 @@
   "license": "MIT",
   "open_source": true,
   "module": {
-    "status": {
+    "main_event": {
+      "status": {
       "start": true,
       "stop": true
     },
-    "event_file_name": "event.py",
-    "start_function": "on_start",
-    "stop_function": "on_stop",
-    "init_variable": {
-      "app": "Azurite.app"
+      "event_file_name": "event.py",
+      "start_function": "on_start",
+      "stop_function": "on_stop",
+      "init_variable": {
+        "app": "Leaf.app"
+      }
     }
   },
 
   "mapping": {
-    "format": "Moss-mapping-v2",
+    "format": "Leaf-mapping-v2",
     "path": {
       "prefix_command_path": "prefix_command",
       "slash_command_path": "slash_command",

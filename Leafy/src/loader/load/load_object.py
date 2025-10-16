@@ -3,7 +3,7 @@ import json
 import inspect
 import importlib
 from discord.ext import commands
-from Moss.src.utils.file_handler.path_manager import path
+from Leafy.src.utils.file_handler.path_manager import path
 async def _load_object(app: commands.Bot,cog_path,
                        plugin_name: str, path_name: str,
                        command_list: list):
@@ -37,7 +37,7 @@ async def _load_object(app: commands.Bot,cog_path,
                     sig = inspect.signature(cls)
                     for key, val in mapping_data["init"]["variables"].items():
                         if key in sig.parameters:
-                            if val.lower() == "moss.bot":
+                            if val.lower() == "leaf.bot":
                                 params[key] = app
                             else:
                                 params[key] = None

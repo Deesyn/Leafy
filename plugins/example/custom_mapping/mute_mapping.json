@@ -2,7 +2,7 @@
   "init": {
     "enabled": true,
     "variables": {
-      "bot": "Moss.bot"
+      "bot": "Leaf.bot"
     }
   },
   "setting": {

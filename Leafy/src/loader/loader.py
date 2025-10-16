@@ -10,24 +10,24 @@ from typing import Optional
 # Third-Party
 from discord.ext import commands
 
-# Moss Utility Imports
-from Moss.src.utils.Local_Logger import Logger
-from Moss.src.utils.calculator.thread_calculator import thread_calculator
-from Moss.src.utils.file_handler.config import Config
-from Moss.src.utils.file_handler.extract import extract
-from Moss.src.utils.file_handler.path_manager import path
+# Leafy Utility Imports
+from Leafy.src.utils.Local_Logger import Logger
+from Leafy.src.utils.calculator.thread_calculator import thread_calculator
+from Leafy.src.utils.file_handler.config import Config
+from Leafy.src.utils.file_handler.extract import extract
+from Leafy.src.utils.file_handler.path_manager import path
 
-# Moss Loader Imports
-from Moss.src.loader.load.load_object import _load_object
-from Moss.src.loader.load.load_mapping import _load_mapping
-from Moss.src.loader.load.load_main_event import _load_main_event
-from Moss.src.loader.utils.get_plugin_info import _get_plugin_info
-from Moss.src.loader.utils.check_python_version import _check_python_version
-from Moss.src.loader.handler.launch_multi_thread import _launch_multi_thread
-from Moss.src.loader.handler.download_package import download_package
+# Leafy Loader Imports
+from Leafy.src.loader.load.load_object import _load_object
+from Leafy.src.loader.load.load_mapping import _load_mapping
+from Leafy.src.loader.load.load_main_event import _load_main_event
+from Leafy.src.loader.utils.get_plugin_info import _get_plugin_info
+from Leafy.src.loader.utils.check_python_version import _check_python_version
+from Leafy.src.loader.handler.launch_multi_thread import _launch_multi_thread
+from Leafy.src.loader.handler.download_package import download_package
 
-# Moss Terminal Imports
-from Moss.src.terminal import print_plugin_dir_tree
+# Leafy Terminal Imports
+from Leafy.src.terminal import print_plugin_dir_tree
 
 class Loader:
     def __init__(self, app):

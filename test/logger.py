@@ -1,3 +1,3 @@
-from Moss.MossSDK.Logger import Logger
+from Leafy.LeafySDK.Logger import Logger
 
 

@@ -1,7 +1,7 @@
 import subprocess
 import sys
-from Moss.src.utils.Local_Logger import Logger
-from Moss.src.utils.cache_handler.cache import Cache
+from Leafy.src.utils.Local_Logger import Logger
+from Leafy.src.utils.cache_handler.cache import Cache
 
 def download_package(package_list):
     cache_file_name = 'package_download_cache'

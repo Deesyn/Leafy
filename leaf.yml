@@ -1,9 +1,10 @@
-#       __  ___
-#      /  |/  /__  ___ ___
-#     / /|_/ / _ \(_-<(_-<
-#    /_/  /_/\___/___/___/
-#
-
+#        __               ____
+#       / /   ___  ____ _/ __/_  __
+#      / /   / _ \/ __ `/ /_/ / / /
+#     / /___/  __/ /_/ / __/ /_/ /
+#    /_____/\___/\__,_/_/  \__, /
+#                         /____/
+# Version beta-2.0.4
 
 
 discord:
@@ -26,7 +27,7 @@ Loader:
 
 
   fast_module: disable
-  #When this option is enabled, Moss automatically calculates how to distribute plugins across threads each time a plugin is loaded.
+  #When this option is enabled, Leafy automatically calculates how to distribute plugins across threads each time a plugin is loaded.
   #It splits the plugin into multiple threads based on its modules, allowing faster loading.
   #However, note that this process will temporarily increase CPU usage during startup.
 
@@ -58,12 +59,12 @@ Loader:
 
 
 
-Moss:
-  MossProxy:
+Leaf:
+  LeafProxy:
     status: disable
     address: 0.0.0.0
     port: random     
-  # Moss Proxy doesn’t add any security — it’s designed to help you track and log all request traffic.
+  # Leafy Proxy doesn’t add any security — it’s designed to help you track and log all request traffic.
   SDK:
     embed_format: 'discohook'
 

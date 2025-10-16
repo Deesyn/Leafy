@@ -3,11 +3,11 @@ import time
 import yaml
 import discord
 from discord.ext import commands
-from Moss.src.local import _add_intents
-from Moss.src.utils.file_handler.path_manager import path
-from Moss.src.utils.Local_Logger import Logger
-from Moss.src.utils.token_valid_check import _token_valid_check
-from Moss.src.loader.handler.download_package import download_package
+from Leafy.src.local import _add_intents
+from Leafy.src.utils.file_handler.path_manager import path
+from Leafy.src.utils.Local_Logger import Logger
+from Leafy.src.utils.token_valid_check import _token_valid_check
+from Leafy.src.loader.handler.download_package import download_package
 
 
 def main():
@@ -32,7 +32,7 @@ def main():
         )
     @app.event
     async def on_ready():
-        from Moss.src.loader.loader import Loader
+        from Leafy.src.loader.loader import Loader
         start_time = time.time()
         Logger.LOADER(message=f"Starting Loader..")
         init_loader = Loader(app=app)

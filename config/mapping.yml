@@ -1,6 +1,6 @@
 mapping_file: "mapping.json"
-format: "Moss-mapping-v2" # Format List        |
-                             # Moss-mapping-v1 | The old mapping format does not support as many features as v2
-                             # Moss-mapping-v2 | Current version
+format: "Leafy-mapping-v2" # Format List        |
+                             # Leafy-mapping-v1 | The old mapping format does not support as many features as v2
+                             # Leafy-mapping-v2 | Current version
                              # Auto-detect        | Automatically detect the format of mapping.json
 

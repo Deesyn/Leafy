@@ -1,7 +1,7 @@
 import os
 import json
 from functools import lru_cache
-from Moss.src.utils.file_handler.path_manager import path
+from Leafy.src.utils.file_handler.path_manager import path
 @lru_cache(maxsize=3)
 def _load_mapping(plugin_name: str, plugin_source):
     try:

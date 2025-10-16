@@ -21,7 +21,7 @@ class Logger:
 
         console.print(
             f"[rgb(130,129,129)][{timestamp}][/rgb(130,129,129)] "
-            f"[{color}][Moss/{level}][/{color}] "
+            f"[{color}][Leaf/{level}][/{color}] "
             f"[white]{message}[/white]"
         )
 

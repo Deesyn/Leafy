@@ -1,4 +1,4 @@
-from Moss.MossSDK import config
+from Leafy.LeafySDK import config
 
 async def on_start():
     config.make()

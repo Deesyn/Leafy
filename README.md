@@ -1,8 +1,8 @@
-# 📦 Moss<br><br>
-Moss makes creating fully-featured Discord bots fast and effortless.
-Whether you’re a beginner or an experienced developer, Moss lets you easily manage commands, events, and configurations while keeping your bot modular and maintainable. Its plugin system allows you to quickly add new features, whether they come from the community or your own custom code.
+# 📦 Leafy<br><br>
+Leafy makes creating fully-featured Discord bots fast and effortless.
+Whether you’re a beginner or an experienced developer, leafy lets you easily manage commands, events, and configurations while keeping your bot modular and maintainable. Its plugin system allows you to quickly add new features, whether they come from the community or your own custom code.
 
-With Moss, you can:
+With Leafy, you can:
 
 Seamlessly integrate community or custom plugins.
 
@@ -10,7 +10,7 @@ Build complex functionalities using a clear and intuitive SDK.
 
 Keep your bot organized, scalable, and easy to maintain.
 
-Moss helps you focus on building amazing bots, not worrying about boilerplate code or repetitive setup.
+Leafy helps you focus on building amazing bots, not worrying about boilerplate code or repetitive setup.
 
 
 # 🗒️ Requirements<br>
@@ -19,11 +19,11 @@ Moss helps you focus on building amazing bots, not worrying about boilerplate co
 
 # 🔖 Docs<br>
 ## 🗒️ EN:
-- How to make a plugin?: [click_here](https://github.com/Notkenftr/Moss/tree/main/docs/EN/make_a_plugin)
-- How to make a script?: [click_here](https://github.com/Notkenftr/Moss/tree/main/docs/EN/make_a_script)
+- How to make a plugin?: [click_here](https://github.com/Notkenftr/Leafy/tree/main/docs/EN/make_a_plugin)
+- How to make a script?: [click_here](https://github.com/Notkenftr/leafy/tree/main/docs/EN/make_a_script)
 ## 🗒️ VI:
-- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/Moss/tree/main/docs/VI/make_a_plugin)
-- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/Moss/docs/tree/main/VI/make_a_script)
+- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/leafy/tree/main/docs/VI/make_a_plugin)
+- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/leafy/docs/tree/main/VI/make_a_script)
 # 📍 LICENSE
 
 MIT License

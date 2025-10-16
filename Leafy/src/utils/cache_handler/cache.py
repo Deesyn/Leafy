@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from Moss.src.utils.Local_Logger import Logger
+from Leafy.src.utils.Local_Logger import Logger
 
 
 class Cache:
