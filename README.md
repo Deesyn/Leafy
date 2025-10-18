@@ -1,8 +1,8 @@
-# 📦 Leafy<br><br>
-Leafy makes creating fully-featured Discord bots fast and effortless.
-Whether you’re a beginner or an experienced developer, leafy lets you easily manage commands, events, and configurations while keeping your bot modular and maintainable. Its plugin system allows you to quickly add new features, whether they come from the community or your own custom code.
+# 📦 Swit<br><br>
+Swit makes creating fully-featured Discord bots fast and effortless.
+Whether you’re a beginner or an experienced developer, swit lets you easily manage commands, events, and configurations while keeping your bot modular and maintainable. Its plugin system allows you to quickly add new features, whether they come from the community or your own custom code.
 
-With Leafy, you can:
+With Swit, you can:
 
 Seamlessly integrate community or custom plugins.
 
@@ -10,7 +10,7 @@ Build complex functionalities using a clear and intuitive SDK.
 
 Keep your bot organized, scalable, and easy to maintain.
 
-Leafy helps you focus on building amazing bots, not worrying about boilerplate code or repetitive setup.
+Swit helps you focus on building amazing bots, not worrying about boilerplate code or repetitive setup.
 
 
 # 🗒️ Requirements<br>
@@ -19,11 +19,11 @@ Leafy helps you focus on building amazing bots, not worrying about boilerplate c
 
 # 🔖 Docs<br>
 ## 🗒️ EN:
-- How to make a plugin?: [click_here](https://github.com/Notkenftr/Leafy/tree/main/docs/EN/make_a_plugin)
-- How to make a script?: [click_here](https://github.com/Notkenftr/leafy/tree/main/docs/EN/make_a_script)
+- How to make a plugin?: [click_here](https://github.com/Notkenftr/swit/tree/main/docs/EN/make_a_plugin)
+- How to make a script?: [click_here](https://github.com/Notkenftr/swit/tree/main/docs/EN/make_a_script)
 ## 🗒️ VI:
-- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/leafy/tree/main/docs/VI/make_a_plugin)
-- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/leafy/docs/tree/main/VI/make_a_script)
+- Cách làm 1 plugin: [ấn vào](https://github.com/Notkenftr/swit/tree/main/docs/VI/make_a_plugin)
+- Cách làm 1 script: [ấn vào](https://github.com/Notkenftr/swit/docs/tree/main/VI/make_a_script)
 # 📍 LICENSE
 
 MIT License

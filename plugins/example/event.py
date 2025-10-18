@@ -1,8 +1,8 @@
-from Leafy.LeafySDK import config
+from Swit.SwitSDK import config
 
-async def on_start():
-    config.make()
+async def on_start(app):
+    config.make(config_data='assets/config_data.yml')
     print('Đã nhận on start')
 
-async def on_stop():
+async def on_stop(app):
     print('Đã nhận on stop')

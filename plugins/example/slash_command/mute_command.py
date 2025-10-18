@@ -22,7 +22,7 @@ class mute_command(commands.Cog):
                 full_time += time*60*60*24
         return timedelta(full_time)
 
-    @app_commands.command(name='mute',description='mute user')
+    @app_commands.command(name='f-mute',description='mute user')
     @app_commands.describe(user='chose a user',until='only supports: s/m/h/d')
     async def mute(self,interaction: discord.Interaction,until:str,user: discord.Member):
         await interaction.response.defer(thinking=True)

@@ -1,3 +1,3 @@
-from Leafy.LeafySDK.Logger import Logger
+from Swit.SwitSDK.Logger import Logger
 
 

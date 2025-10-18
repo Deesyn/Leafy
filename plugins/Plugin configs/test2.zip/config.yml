@@ -1,0 +1,5 @@
+test:
+  boolT: true
+  boolF: false
+  list_test: [1,2,3,4]
+  string_test: "test"

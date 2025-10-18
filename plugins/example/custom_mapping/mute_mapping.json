@@ -2,7 +2,7 @@
   "init": {
     "enabled": true,
     "variables": {
-      "bot": "Leaf.bot"
+      "bot": "Swit.bot"
     }
   },
   "setting": {

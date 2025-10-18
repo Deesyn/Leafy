@@ -15,13 +15,13 @@
       "start_function": "on_start",
       "stop_function": "on_stop",
       "init_variable": {
-        "app": "Leaf.app"
+        "app": "Swit.app"
       }
     }
   },
 
   "mapping": {
-    "format": "Leaf-mapping-v2",
+    "format": "Swit-mapping-v2",
     "path": {
       "prefix_command_path": "prefix_command",
       "slash_command_path": "slash_command",

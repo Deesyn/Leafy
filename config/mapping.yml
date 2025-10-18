@@ -1,13 +1,16 @@
-#        __               ____
-#       / /   ___  ____ _/ __/_  __
-#      / /   / _ \/ __ `/ /_/ / / /
-#     / /___/  __/ /_/ / __/ /_/ /
-#    /_____/\___/\__,_/_/  \__, /
-#                         /____/
+#      /$$$$$$                /$$   /$$
+#     /$$__  $$              |__/  | $$
+#    | $$  \__/ /$$  /$$  /$$ /$$ /$$$$$$
+#    |  $$$$$$ | $$ | $$ | $$| $$|_  $$_/
+#     \____  $$| $$ | $$ | $$| $$  | $$
+#     /$$  \ $$| $$ | $$ | $$| $$  | $$ /$$
+#    |  $$$$$$/|  $$$$$/$$$$/| $$  |  $$$$/
+#     \______/  \_____/\___/ |__/   \___/
+
 
 mapping_file: "mapping.json"
-format: "Leafy-mapping-v2" # Format List        |
-                             # Leafy-mapping-v1 | The old mapping format does not support as many features as v2
-                             # Leafy-mapping-v2 | Current version
+format: "Swit-mapping-v2" # Format List        |
+                             # Swit-mapping-v1 | The old mapping format does not support as many features as v2
+                             # Swit-mapping-v2 | Current version
                              # Auto-detect        | Automatically detect the format of mapping.json
 
