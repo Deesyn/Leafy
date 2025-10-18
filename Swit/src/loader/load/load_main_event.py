@@ -4,7 +4,7 @@ import asyncio
 from Swit.SwitSDK.api import App
 async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
 
-    from Swit.src.utils.file_handler.path_manager import path
+    from Swit.src.handler.file.path_manager import path
     from Swit.src.loader.load.load_mapping import _load_mapping
     from Swit.src.loader.utils.import_module import _import_module
 

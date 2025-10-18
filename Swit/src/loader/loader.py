@@ -11,11 +11,11 @@ from typing import Optional
 from discord.ext import commands
 
 # Swit Utility Imports
-from Swit.src.utils.Local_Logger import Logger
+from Swit.src.utils.logger import Logger
 from Swit.src.utils.calculator.thread_calculator import thread_calculator
-from Swit.src.utils.file_handler.config import Config
-from Swit.src.utils.file_handler.extract import extract
-from Swit.src.utils.file_handler.path_manager import path
+from Swit.src.handler.file.config import Config
+from Swit.src.handler.file.extract import extract
+from Swit.src.handler.file.path_manager import path
 
 # Swit Loader Imports
 from Swit.src.loader.load.load_object import _load_object
@@ -27,7 +27,7 @@ from Swit.src.loader.handler.launch_multi_thread import _launch_multi_thread
 from Swit.src.loader.handler.download_package import download_package
 
 # Swit Terminal Imports
-from Swit.src.terminal import print_plugin_dir_tree
+from Swit.src.core.terminal import print_plugin_dir_tree
 
 class Loader:
     def __init__(self, app):

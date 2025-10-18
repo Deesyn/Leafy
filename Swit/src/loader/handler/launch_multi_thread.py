@@ -3,10 +3,10 @@ import os
 import sys
 import asyncio
 
-from Swit.src.utils.file_handler.config import Config
-from Swit.src.utils.file_handler.path_manager import path
-from Swit.src.utils.Local_Logger import Logger
-from Swit.src.utils.run_async_def import run_async
+from Swit.src.handler.file.config import Config
+from Swit.src.handler.file.path_manager import path
+from Swit.src.utils.logger import Logger
+from Swit.src.utils.async_runner import run_async
 
 from Swit.src.loader.load.load_object import _load_object
 from Swit.src.loader.load.load_mapping import _load_mapping

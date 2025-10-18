@@ -2,8 +2,8 @@ import os
 import json
 from functools import lru_cache
 import zipfile,rarfile
-from Swit.src.utils.file_handler.path_manager import path
-from Swit.src.utils.file_handler.extract import extract
+from Swit.src.handler.file.path_manager import path
+from Swit.src.handler.file.extract import extract
 @lru_cache(maxsize=3)
 def _load_mapping(plugin_name: str, plugin_source):
     try:

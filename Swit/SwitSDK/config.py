@@ -23,12 +23,11 @@
 
 
 import inspect
-import os.path
 import zipfile, rarfile
 from pathlib import Path
 from typing import Optional
 import yaml
-from Swit.src.utils.file_handler.extract import extract
+from Swit.src.handler.file.extract import extract
 
 base_dir = (Path(__file__).parent.parent.parent)
 

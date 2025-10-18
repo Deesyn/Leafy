@@ -4,9 +4,9 @@ import yaml
 import discord
 from discord.ext import commands
 from Swit.src.local import _add_intents
-from Swit.src.utils.file_handler.path_manager import path
-from Swit.src.utils.Local_Logger import Logger
-from Swit.src.utils.token_valid_check import _token_valid_check
+from Swit.src.handler.file.path_manager import path
+from Swit.src.utils.logger import Logger
+from Swit.src.handler.token_valid_check import _token_valid_check
 from Swit.src.loader.handler.download_package import download_package
 
 

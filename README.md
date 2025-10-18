@@ -1,4 +1,16 @@
+
+
 # 📦 Swit<br><br>
+
+      /$$$$$$                /$$   /$$
+     /$$__  $$              |__/  | $$
+    | $$  \__/ /$$  /$$  /$$ /$$ /$$$$$$
+    |  $$$$$$ | $$ | $$ | $$| $$|_  $$_/
+     \____  $$| $$ | $$ | $$| $$  | $$
+     /$$  \ $$| $$ | $$ | $$| $$  | $$ /$$
+    |  $$$$$$/|  $$$$$/$$$$/| $$  |  $$$$/
+     \______/  \_____/\___/ |__/   \___/
+
 Swit makes creating fully-featured Discord bots fast and effortless.
 Whether you’re a beginner or an experienced developer, swit lets you easily manage commands, events, and configurations while keeping your bot modular and maintainable. Its plugin system allows you to quickly add new features, whether they come from the community or your own custom code.
 

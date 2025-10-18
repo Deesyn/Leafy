@@ -1,4 +1,4 @@
-from Swit.src.utils.Local_Logger import Logger
+from Swit.src.utils.logger import Logger
 def print_plugin_dir_tree(plugin_list):
     for i, plugin in enumerate(plugin_list):
         if i < len(plugin_list) - 1:
