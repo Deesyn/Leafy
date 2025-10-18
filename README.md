@@ -26,8 +26,16 @@ Swit helps you focus on building amazing bots, not worrying about boilerplate co
 
 
 # 🗒️ Requirements<br>
-- **Python**: 3.8+
-- **Operating System**: Windows, macOS, or Linux
+**Python**: 3.8+ <br>
+**Operating System**: Windows, macOS, or Linux<br>
+**packages:**<br>
+> discord.py >= 2.5<br>
+> requests >= 2.30<br>
+> rich >= 14.2<br>
+> psutil >= 7.0.0<br>
+> colorama >= 0.4.6<br>
+
+  
 
 # 🔖 Docs<br>
 ## 🗒️ EN:
