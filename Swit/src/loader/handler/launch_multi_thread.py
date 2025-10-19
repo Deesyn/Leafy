@@ -33,7 +33,7 @@ async def _handler(app,plugin):
                 Logger.LOADER(
                     f"Plugin {plugin_name} uses {mapping['mapping']['format']} format instead of required {mapping_config['format']}. Skipping...")
                 return
-            if not _check_python_version(plugin_name, plugin_source):
+            if not _check_python_version(plugin_name, plugin_name=plugin_name):
                 Logger.WARN(f"Skipped {plugin_name} (Python version incompatible)")
                 return
             if Config.Loader.fast_module():

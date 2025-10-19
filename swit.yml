@@ -25,7 +25,7 @@ discord:
   sync: "all_guilds"
 
 Loader:
-  multil_thread: disable # enable / disable
+  multi_thread: disable # enable / disable
   max_thread: -1 # -1 : auto
 
 

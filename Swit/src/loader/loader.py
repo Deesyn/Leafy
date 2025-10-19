@@ -51,11 +51,11 @@ class Loader:
 
 
 
-    async def _load_plugin(self, plugin_name: str, plugin_source):
+    async def _load_plugin(self, plugin_name: str, plugin_object):
         try:
             Logger.LOADER(f"Load plugin: {plugin_name}")
             sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
-            mapping = _load_mapping(plugin_name, plugin_source)
+            mapping = _load_mapping(plugin_name, plugin_object)
             mapping_config = Config.Mapping()
             mapping_paths = mapping["mapping"]["path"]
 
@@ -69,13 +69,13 @@ class Loader:
             self.event = mapping["mapping"]["events_list"]
             self.group_commands = mapping["mapping"]["command_group_list"]
 
-            _,_,_,self.packages_list = _get_plugin_info(plugin_name=plugin_name, plugin_source=plugin_name)
+            _,_,_,self.packages_list = _get_plugin_info(plugin_name=plugin_name, plugin_object=plugin_name)
             download_package(package_list=self.packages_list)
 
             if mapping_config['format'] != mapping['mapping']['format']:
                 Logger.LOADER(f"Plugin {plugin_name} uses {mapping['mapping']['format']} format instead of required {mapping_config['format']}. Skipping...")
                 return
-            if not _check_python_version(plugin_name, plugin_source):
+            if not _check_python_version(plugin_name, plugin_object):
                 Logger.WARN(f"Skipped {plugin_name} (Python version incompatible)")
                 return
             tasks = []
@@ -122,15 +122,15 @@ class Loader:
                     data = extract.zip(file_path)
                     await _load_main_event("archive", plugin, data)
                     await self._load_plugin(plugin_name=plugin,
-                                            plugin_source=plugin)
+                                            plugin_object=plugin)
 
                 elif plugin.endswith(".rar"):
                     data = extract.rar(file_path)
                     await _load_main_event("archive", plugin, data)
                     await self._load_plugin(plugin_name=plugin,
-                                            plugin_source=plugin)
+                                            plugin_object=plugin)
 
                 elif os.path.isdir(file_path):
                     await _load_main_event("dir", plugin, plugin)
                     await self._load_plugin(plugin_name= plugin,
-                                            plugin_source= plugin)
+                                            plugin_object= plugin)

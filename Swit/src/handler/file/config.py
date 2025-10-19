@@ -126,7 +126,7 @@ class Config:
         base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..','..'))
         mapping_config_path = os.path.join(base_dir, 'config','mapping.yml')
         if not os.path.exists(mapping_config_path):
-            return None
+            return {}
         with open(mapping_config_path,'r',encoding='utf-8') as f:
             data = yaml.load(f,yaml.SafeLoader)
         return data

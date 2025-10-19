@@ -5,12 +5,12 @@ import zipfile,rarfile
 from Swit.src.handler.file.path_manager import path
 from Swit.src.handler.file.extract import extract
 @lru_cache(maxsize=3)
-def _load_mapping(plugin_name: str, plugin_source):
+def _load_mapping(plugin_name: str, plugin_object):
     try:
-        if isinstance(plugin_source, str) and (plugin_source.endswith('.zip') or plugin_source.endswith('.rar')):
-            plugin_full_path = os.path.join(path.plugin(), plugin_source)
+        if isinstance(plugin_object, str) and (plugin_object.endswith('.zip') or plugin_object.endswith('.rar')):
+            plugin_full_path = os.path.join(path.plugin(), plugin_object)
 
-            if plugin_source.endswith('.zip'):
+            if plugin_object.endswith('.zip'):
                 archive = extract.zip(plugin_full_path)
             else:
                 archive = extract.rar(plugin_full_path)
@@ -18,8 +18,8 @@ def _load_mapping(plugin_name: str, plugin_source):
             with archive.open("mapping.json") as f:
                 return json.load(f)
 
-        elif isinstance(plugin_source, (zipfile.ZipFile, rarfile.RarFile)):
-            with plugin_source.open("mapping.json") as f:
+        elif isinstance(plugin_object, (zipfile.ZipFile, rarfile.RarFile)):
+            with plugin_object.open("mapping.json") as f:
                 return json.load(f)
 
         else:

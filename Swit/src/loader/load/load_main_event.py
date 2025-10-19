@@ -8,8 +8,7 @@ async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
     from Swit.src.loader.load.load_mapping import _load_mapping
     from Swit.src.loader.utils.import_module import _import_module
 
-    mapping = _load_mapping(plugin_name= plugin_name if plugin_type == "dir" else None,
-                            plugin_source= plugin_source)
+    mapping = _load_mapping(plugin_name= plugin_name if plugin_type == "dir" else None, plugin_object= plugin_source)
     mod_info = mapping.get("module", {}).get('main_event',{})
 
     event_file = mod_info.get("event_file_name")

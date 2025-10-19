@@ -1,8 +1,8 @@
 import platform
 from packaging import version
 from Swit.src.loader.utils.get_plugin_info import _get_plugin_info
-def _check_python_version(plugin_name: str, plugin_source) -> bool:
-    _, _, required, _ = _get_plugin_info(plugin_name, plugin_source)
+def _check_python_version(plugin_name: str, plugin_object) -> bool:
+    _, _, required, _ = _get_plugin_info(plugin_name, plugin_object)
     if not required:
         return True
 

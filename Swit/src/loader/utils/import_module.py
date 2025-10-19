@@ -4,6 +4,7 @@ def _import_module(plugin_path,module_name:str,module_path:str):
     import sys
     if str(plugin_path).endswith('.zip') or str(plugin_path).endswith('.rar'):
         sys.path.insert(0,plugin_path)
+        print(plugin_path)
         module = importlib.import_module(module_name)
         sys.path.remove(plugin_path)
         return module
