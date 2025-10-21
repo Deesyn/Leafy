@@ -1,3 +1,14 @@
 .venv/
 .idea/
 __pycache__/!/swit.yml
+__pycache__/
+*.py[cod]
+!/classes_Swit--source-roots.svg
+!/packages_Swit--source-roots.svg
+!/plugins/Plugin configs/ticket/
+!/plugins/Plugin configs/test2.zip/
+!/plugins/ticket/
+!/plugins/test2.disable
+
+!/plugins/test-rar.disable
+!/swit.yml

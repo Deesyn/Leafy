@@ -134,9 +134,13 @@ class config():
         caller_path = Path(frame.filename).resolve()
 
         plugin_name = caller_path.parent.name
+        parts = str(caller_path).split('\\')
+        for i, value in enumerate(parts):
+            if value.lower() == 'plugins' and i + 1 < len(parts):
+                plugin_name = parts[i + 1]
+                break
 
-        config_path = (Path(__file__).parent.parent.parent / "plugins" / plugin_name / "Plugin configs" / "config.yml" if config_name == "config-yml" else config_name)
-
+        config_path = (Path(__file__).parent.parent.parent / "plugins" / "Plugin configs"/ plugin_name / "config.yml" if config_name == "config.yml" else config_name)
         if not config_path.exists():
             raise FileNotFoundError("config not found")
         try:

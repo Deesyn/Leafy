@@ -116,6 +116,8 @@ class Loader:
             for plugin in os.listdir(path.plugin()):
                 if plugin == "Plugin configs":
                     continue
+                if plugin.endswith(".dis") or plugin.endswith('.disable'):
+                    continue
                 file_path = os.path.join(path.plugin(), plugin)
 
                 if plugin.endswith(".zip"):

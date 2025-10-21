@@ -16,7 +16,10 @@ async def _load_object(app: commands.Bot,cog_path,
             class_name = item["class"]
 
             if path_name == 'slash':
-                module = importlib.import_module(f"{cog_path}.{file_name}")
+                pass
+            print(cog_path)
+            print(file_name)
+            module = importlib.import_module(f"{cog_path}.{file_name}")
             cls = getattr(module, class_name)
             params = {}
 

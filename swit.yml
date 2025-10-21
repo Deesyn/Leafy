@@ -1,3 +1,4 @@
+
 #      /$$$$$$                /$$   /$$
 #     /$$__  $$              |__/  | $$
 #    | $$  \__/ /$$  /$$  /$$ /$$ /$$$$$$
@@ -9,6 +10,7 @@
 
 # Version beta-2.0.4
 
+# =========================================================================
 
 discord:
   # You can create a bot here: https://discord.com/developers/applications
@@ -17,17 +19,34 @@ discord:
   #see the intents at: https://github.com/Notkenftr/Swit/blob/main/docs/intents_list.md
   intents:
     - all
+    -
+# =========================================================================
+
   # Auto_sharded should only be enabled when the bot is in over 2000 servers
   auto_sharded: disable
-  # The command prefix. For example: if the prefix is set to !, the command will be !{command}
+
+# =========================================================================
+
+  # The command prefix.
+# Example: if the prefix is set to !, the command will be !{command}
+
   command_prefix: '!'
-  # This section relates to where the slash commands will be synchronized. If set to 'all', it applies to all guilds the bot participates in, or you can set a specific guild ID.
+
+# =========================================================================
+
+  # This section relates to where the slash commands will be synchronized. If set to 'all',
+  # it applies to all guilds the bot participates in, or you can set a specific guild ID.
   sync: "all_guilds"
 
+# =========================================================================
+
 Loader:
+# =========================================================================
+
   multi_thread: disable # enable / disable
   max_thread: -1 # -1 : auto
 
+# =========================================================================
 
   fast_module: disable
   #When this option is enabled, Swit automatically calculates how to distribute plugins across threads each time a plugin is loaded.
@@ -37,11 +56,22 @@ Loader:
   #note
   #Do not enable this option when multithreading is already active.
   #Although it can make plugins load faster, it will significantly increase CPU usage.
+# =========================================================================
+  mapping_cache:
+    status: enable
+    # After the initial load, the plugin’s mapping and related information are cached, allowing subsequent loads to achieve higher speed and reduced I/O overhead.
+    hash:
+      status: enable
+      method: sha256
+      # Each plugin is assigned a unique hash. Whenever a change is detected, Swit immediately identifies it and automatically reloads the corresponding mapping.
+# =========================================================================
 
   privilege_dropped_subprocess:
     max_cpu: 20 # 20%
     max_memory: 25 # 300mb
     timed_out: 5000 #5000ms = 5s
+
+# =========================================================================
 
   allow:
     prefix_command: true # If you set it to false, the default loader will not add the prefix commands to the bot.
@@ -49,18 +79,22 @@ Loader:
     group_command: true # If you set it to false, the default loader will not add the group commands to the bot.
     events: true # If you set it to false, the default loader will not add the events to the bot.
 
+# =========================================================================
+
     # Important
     # To export as RAR, please install WinRAR.
     plugin_format: ['folder','zip','rar'] # format type |
-                                           # .zip        | zip file
-                                           # .rar        | rar file
-                                           # folder      | folder
+                                          # .zip        | zip file
+                                          # .rar        | rar file
+                                          # folder      | folder
+
+# =========================================================================
+
   script_loader:
     enable: enable
     disable_script_list: []
 
-
-
+# =========================================================================
 
 Swit:
   SwitProxy:
@@ -71,9 +105,11 @@ Swit:
   SDK:
     embed_format: 'discohook'
 
-    #| Support       | Type             |
-    #| dischook      | Json             |
-    #| sapphire      | Json             |
+    #| Support       | Type |
+    #| discohook     | Json |
+    #| sapphire      | Json |
+
+
 
 require:
   packages: ['discord.py','rich','pyyaml']

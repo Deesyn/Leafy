@@ -1,0 +1,34 @@
+# Markdown và escape sequence
+#| Ký hiệu         | Tác dụng                |
+#|------------------|------------------------|
+#| *nội dung*       | In nghiêng             |
+#| _nội dung_       | In nghiêng             |
+#| **nội dung**     | In đậm                 |
+#| __nội dung__     | In đậm                 |
+#| ***nội dung***   | In đậm + nghiêng       |
+#| __*nội dung*__   | In đậm + nghiêng       |
+#| ~~nội dung~~     | Gạch ngang             |
+#| `nội dung`       | Code nội dòng          |
+#| ```nội dung```   | Khối code (code block) |
+#| > nội dung       | Trích dẫn (quote)      |
+#| \n               | Xuống dòng             |
+#| \\               | In ra dấu "\"          |
+
+embed:
+
+  launch_ticket_embed:
+    title: "📦 Ticket"
+    description: "Để mở ticket vui lòng ấn vào nút bên dưới"
+    color: 0x83F99A
+    thumbnail: ''
+    image: ''
+    view:
+      button:
+        name: 'Tạo ticket'
+        color: 'green' # chỉ hỗ trợ các màu sau: (green, red, grey, blue)
+        emoji: ''
+
+
+ticket:
+  launch_at:
+    channel_id: 1405529842983899239
