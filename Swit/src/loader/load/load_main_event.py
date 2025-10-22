@@ -13,7 +13,6 @@ async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
 
     event_file = mod_info.get("event_file_name")
     start_func_name = mod_info.get("start_function")
-    stop_func_name = mod_info.get("stop_function")
     init_variable = mod_info.get('init_variable')
 
     sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
@@ -22,7 +21,7 @@ async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
     plugin_path = os.path.join(path.plugin(),plugin_name)
     module = _import_module(plugin_path=plugin_path,module_name=module_name,module_path=str(module_path))
 
-    for function_name in [start_func_name, stop_func_name]:
+    for function_name in [start_func_name]:
         function = getattr(module, function_name, None)
         parms = {}
         for key, api in init_variable.items():

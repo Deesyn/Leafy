@@ -19,7 +19,6 @@ discord:
   #see the intents at: https://github.com/Notkenftr/Swit/blob/main/docs/intents_list.md
   intents:
     - all
-    -
 # =========================================================================
 
   # Auto_sharded should only be enabled when the bot is in over 2000 servers
@@ -110,6 +109,8 @@ Swit:
     #| sapphire      | Json |
 
 
+console:
+  round: "2" #round(num,{round})
 
 require:
   packages: ['discord.py','rich','pyyaml']

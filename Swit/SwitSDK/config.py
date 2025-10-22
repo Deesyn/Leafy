@@ -75,6 +75,9 @@ class config():
             plugin_path = (Path(__file__).parent.parent.parent / "plugins" / plugin_name)
             plugin_config_path = (Path(__file__).parent.parent.parent / "plugins" / "Plugin configs" / plugin_name / "config.yml")
 
+            if plugin_config_path.exists():
+                return plugin_config_path
+
             if config_data is None:
                 plugin_config_path.parent.mkdir(parents=True, exist_ok=True)
 

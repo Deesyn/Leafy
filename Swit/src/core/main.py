@@ -25,16 +25,16 @@ import yaml
 import asyncio
 import discord
 from discord.ext import commands
-from Swit.src.local import _add_intents
-from Swit.src.handler.file.path_manager import path
-from Swit.src.utils.logger import Logger
-from Swit.src.core.Initialization import initialization
-from Swit.src.handler.token_valid_check import _token_valid_check
-from Swit.src.loader.handler.download_package import download_package
+from Swit.src import _add_intents
+from Swit.src import path
+from Swit.src import Loader
+from Swit.src import Logger
+from Swit.src import initialization
+from Swit.src import _token_valid_check
+from Swit.src import download_package
 
 async def start_loader(app):
     await initialization()
-    from Swit.src.loader.loader import Loader
     Logger.LOADER(message=f"Starting Loader..")
     init_loader = Loader(app=app)
     await init_loader.start_loader()

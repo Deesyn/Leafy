@@ -15,6 +15,7 @@ from Swit.src.utils.logger import Logger
 from Swit.src.utils.calculator.thread_calculator import thread_calculator
 from Swit.src.handler.file.config import Config
 from Swit.src.handler.file.extract import extract
+from Swit.src.handler.file.log import log
 from Swit.src.handler.file.path_manager import path
 
 # Swit Loader Imports
@@ -59,15 +60,15 @@ class Loader:
             mapping_config = Config.Mapping()
             mapping_paths = mapping["mapping"]["path"]
 
-            self.prefix_path = mapping_paths["prefix_command_path"]
-            self.slash_path = mapping_paths["slash_command_path"]
-            self.event_path = mapping_paths["event_command_path"]
-            self.command_group_path = mapping_paths["command_group_path"]
+            prefix_path = mapping_paths["prefix_command_path"]
+            slash_path = mapping_paths["slash_command_path"]
+            event_path = mapping_paths["event_command_path"]
+            command_group_path = mapping_paths["command_group_path"]
 
-            self.prefix_commands = mapping["mapping"]["prefix_command_list"]
-            self.slash_commands = mapping["mapping"]["slash_command_list"]
-            self.event = mapping["mapping"]["events_list"]
-            self.group_commands = mapping["mapping"]["command_group_list"]
+            prefix_commands = mapping["mapping"]["prefix_command_list"]
+            slash_commands = mapping["mapping"]["slash_command_list"]
+            event = mapping["mapping"]["events_list"]
+            group_commands = mapping["mapping"]["command_group_list"]
 
             _,_,_,self.packages_list = _get_plugin_info(plugin_name=plugin_name, plugin_object=plugin_name)
             download_package(package_list=self.packages_list)
@@ -79,14 +80,17 @@ class Loader:
                 Logger.WARN(f"Skipped {plugin_name} (Python version incompatible)")
                 return
             tasks = []
+
             if self.allow_prefix:
-                tasks.append(_load_object(self.app,self.prefix_path,plugin_name, "prefix", self.prefix_commands))
+                tasks.append(_load_object(self.app,prefix_path,plugin_name, "prefix", prefix_commands))
             if self.allow_slash:
-                tasks.append(_load_object(self.app,self.slash_path,plugin_name, "slash", self.slash_commands))
+                tasks.append(_load_object(self.app,slash_path,plugin_name, "slash", slash_commands))
             if self.allow_events:
-                tasks.append(_load_object(self.app,self.event_path,plugin_name, "event", self.event))
+                tasks.append(_load_object(self.app,event_path,plugin_name, "event", event))
             if self.allow_group:
-                tasks.append(_load_object(self.app,self.command_group_path,plugin_name, "group", self.group_commands))
+                tasks.append(_load_object(self.app,command_group_path,plugin_name, "group", group_commands))
+
+
             if Config.Loader.fast_module():
                 await asyncio.gather(*tasks)
             else:
@@ -96,9 +100,11 @@ class Loader:
         except Exception as e:
             sys.path.remove(os.path.join(path.plugin(), plugin_name))
             Logger.ERROR(message=f"Failed to load {plugin_name}! Skip")
-            raise e
+            traceback_log_path = log.write_bug(e)
+            Logger.LOADER(message=f'The bug details are saved at {traceback_log_path}')
         finally:
             sys.path.remove(os.path.join(path.plugin(), plugin_name))
+            Logger.INFO(message=f'Load {plugin_name} success!')
 
 
     async def start_loader(self):
@@ -122,17 +128,17 @@ class Loader:
 
                 if plugin.endswith(".zip"):
                     data = extract.zip(file_path)
-                    await _load_main_event("archive", plugin, data)
                     await self._load_plugin(plugin_name=plugin,
                                             plugin_object=plugin)
+                    await _load_main_event("archive", plugin, data)
 
                 elif plugin.endswith(".rar"):
                     data = extract.rar(file_path)
-                    await _load_main_event("archive", plugin, data)
                     await self._load_plugin(plugin_name=plugin,
                                             plugin_object=plugin)
+                    await _load_main_event("archive", plugin, data)
 
                 elif os.path.isdir(file_path):
-                    await _load_main_event("dir", plugin, plugin)
                     await self._load_plugin(plugin_name= plugin,
                                             plugin_object= plugin)
+                    await _load_main_event("dir", plugin, plugin)
