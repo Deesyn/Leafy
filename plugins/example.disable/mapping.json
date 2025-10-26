@@ -1,0 +1,70 @@
+{
+  "name": "example",
+  "description": "This is a example plugins",
+  "version": "1.0.0",
+  "author": "kenftr",
+  "license": "MIT",
+  "open_source": true,
+  "module": {
+    "main_event": {
+      "status": {
+      "start": true,
+      "stop": true
+    },
+      "event_file_name": "event.py",
+      "start_function": "on_start",
+      "stop_function": "on_stop",
+      "init_variable": {
+        "app": "Swit.app"
+      }
+    }
+  },
+
+  "mapping": {
+    "format": "Swit-mapping-v2",
+    "path": {
+      "prefix_command_path": "prefix_command",
+      "slash_command_path": "slash_command",
+      "command_group_path": "command_group",
+      "event_command_path": "event"
+    },
+
+    "prefix_command_list": [],
+    "slash_command_list": [
+      {
+        "file_name": "ping_command.py",
+        "class": "ping_command",
+        "custom_mapping": {
+          "enable": true,
+          "path": "ping_mapping.json"
+        }
+
+      },
+      {
+        "file_name": "mute_command.py",
+        "class": "mute_command",
+        "custom_mapping": {
+          "enable": true,
+          "path": "mute_mapping.json"
+        }
+      }
+    ],
+    "command_group_list": [],
+    "events_list": []
+  },
+
+  "hooks": {
+    "on_load": "on_load.py",
+    "on_reload": "on_reload.py"
+  },
+
+  "require":{
+    "python_version": ">=3.8",
+    "potato_pc": true,
+    "packages": ["discord.py",
+                 "colorama"]
+  },
+  "orther": {
+    "loader-mode": "advanced"
+  }
+}
