@@ -8,15 +8,19 @@ from Swit.src.handler.file.path_manager import path
 from Swit.src.utils.logger import Logger
 from Swit.src.utils.async_runner import run_async
 
-from Swit.src.loader.load.load_object import _load_object
-from Swit.src.loader.load.load_mapping import _load_mapping
-from Swit.src.loader.utils.check_python_version import _check_python_version
+from Swit.src.loader.load.LoadObject import Load_Cog
+from Swit.src.loader.load.LoadMapping import _load_mapping
+from Swit.src.loader.utils.CheckPythonVersion import _check_python_version
 async def _handler(app,plugin):
+
+    #flag
+    is_er = False
+
     for plugin_name in plugin:
         try:
             Logger.LOADER(f"Load plugin: {plugin_name}")
             sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
-            mapping = _load_mapping(plugin_name, plugin_name)
+            mapping = _load_mapping(None,plugin_name)
             mapping_config = Config.Mapping()
             mapping_paths = mapping["mapping"]["path"]
 
@@ -38,23 +42,24 @@ async def _handler(app,plugin):
                 return
             if Config.Loader.fast_module():
                 await asyncio.gather(
-                    _load_object(app, prefix_path, plugin_name, "prefix", prefix_commands),
-                    _load_object(app, slash_path, plugin_name, "slash", slash_commands),
-                    _load_object(app, event_path, plugin_name, "event", event_commands),
-                    _load_object(app, command_group_path, plugin_name, "group", group_commands)
+                    Load_Cog(app, prefix_path, plugin_name, "prefix", prefix_commands),
+                    Load_Cog(app, slash_path, plugin_name, "slash", slash_commands),
+                    Load_Cog(app, event_path, plugin_name, "event", event_commands),
+                    Load_Cog(app, command_group_path, plugin_name, "group", group_commands)
                 )
             else:
-                await _load_object(app, prefix_path, plugin_name, "prefix", prefix_commands)
-                await _load_object(app, prefix_path, plugin_name, "slash", prefix_commands)
-                await _load_object(app, prefix_path, plugin_name, "event", prefix_commands)
-                await _load_object(app, prefix_path, plugin_name, "group", prefix_commands)
+                await Load_Cog(app, prefix_path, plugin_name, "prefix", prefix_commands)
+                await Load_Cog(app, prefix_path, plugin_name, "slash", prefix_commands)
+                await Load_Cog(app, prefix_path, plugin_name, "event", prefix_commands)
+                await Load_Cog(app, prefix_path, plugin_name, "group", prefix_commands)
 
         except Exception as e:
             sys.path.remove(os.path.join(path.plugin(), plugin_name))
             Logger.ERROR(message=f"Failed to load {plugin_name}! Skip")
-            raise e
+            is_er = True
         finally:
-            sys.path.remove(os.path.join(path.plugin(), plugin_name))
+            if is_er == False:
+                sys.path.remove(os.path.join(path.plugin(), plugin_name))
 
 def _launch_multi_thread(app,plugin_list,total_thread,plugin_per_thread):
     threads = []

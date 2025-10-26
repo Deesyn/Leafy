@@ -1,5 +1,6 @@
 import os.path
 import random
+import hashlib
 from datetime import datetime
 from Swit.src.handler.file.path_manager import path
 
@@ -19,8 +20,11 @@ class log:
         Returns:
             str: The path to the created log file.
         """
-        name = f"bug-traceback-{datetime.now().strftime('%Y%m%d - %H%M%S')}-{random.randint(1,20)}"
-        file_path = os.path.join(path.root(),'logs',name)
+        name = f"bug-traceback-{datetime.now().strftime('%Y-%m-%d - %H-%M-%S')}.txt"
+        file_path = os.path.join(path.root(),'logs','traceback',name)
+        traceback_dir = os.path.join(path.root(),'logs','traceback')
+        sha256 = hashlib.sha256(str(data).encode('utf-8')).hexdigest()
+        os.makedirs(traceback_dir,exist_ok=True)
         with open(file_path,'w', encoding='utf-8') as f:
-            f.write(data)
+            f.write(f"sha256: {sha256}\n{data}")
         return file_path

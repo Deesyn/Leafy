@@ -27,17 +27,17 @@ import discord
 from discord.ext import commands
 from Swit.src import _add_intents
 from Swit.src import path
-from Swit.src import Loader
+from Swit.src import PluginLoader
 from Swit.src import Logger
 from Swit.src import initialization
 from Swit.src import _token_valid_check
 from Swit.src import download_package
 
-async def start_loader(app):
+async def StartLoader(app):
     await initialization()
     Logger.LOADER(message=f"Starting Loader..")
-    init_loader = Loader(app=app)
-    await init_loader.start_loader()
+    loader_object = PluginLoader(app=app)
+    await loader_object.start_loader()
 
 def main():
     with open(path.config(), 'r', encoding='utf-8') as yml_data:
@@ -73,7 +73,7 @@ def main():
     if _token_valid_check(config['discord']['bot_token']) == True:
         Logger.INFO('Download default package')
         download_package(package_list=config['require']['packages'])
-        asyncio.run(start_loader(app=app))
+        asyncio.run(StartLoader(app=app))
         app.run(config['discord']['bot_token'])
     else:
         Logger.ERROR(f"Invalid token!")

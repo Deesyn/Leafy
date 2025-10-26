@@ -51,6 +51,7 @@ class Config:
 
     data = _load_yaml()
 
+
     class Discord:
         @staticmethod
         def bot_token() -> str:

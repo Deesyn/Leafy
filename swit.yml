@@ -65,10 +65,13 @@ Loader:
       # Each plugin is assigned a unique hash. Whenever a change is detected, Swit immediately identifies it and automatically reloads the corresponding mapping.
 # =========================================================================
 
-  privilege_dropped_subprocess:
+  Swit-Protect:
+    is_active: false
     max_cpu: 20 # 20%
     max_memory: 25 # 300mb
     timed_out: 5000 #5000ms = 5s
+    deny:
+      read: ['swit.yml']
 
 # =========================================================================
 
@@ -79,6 +82,9 @@ Loader:
     events: true # If you set it to false, the default loader will not add the events to the bot.
 
 # =========================================================================
+
+    extract:
+      path: 'cache/plugin_extract/'
 
     # Important
     # To export as RAR, please install WinRAR.

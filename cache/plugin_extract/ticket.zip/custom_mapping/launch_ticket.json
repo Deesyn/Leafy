@@ -1,0 +1,14 @@
+{
+  "init": {
+    "enabled": true,
+    "variables": {
+      "bot": "Swit.bot"
+    }
+  },
+  "setting": {
+    "allow_reload": true,
+    "allow_stop": true,
+    "allow_restart": true,
+    "allow_load": true
+  }
+}

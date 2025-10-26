@@ -1,1 +1,1 @@
-from .data_provider import DataProvider
+from .DataBridge import DataBridge

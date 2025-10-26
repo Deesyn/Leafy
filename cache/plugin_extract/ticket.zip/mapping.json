@@ -1,0 +1,61 @@
+{
+  "name": "ticket-plugin",
+  "description": "ticket plugin for Swit",
+  "version": "1.0.0",
+  "author": "kenftr",
+  "license": "MIT",
+  "open_source": true,
+  "module": {
+    "main_event": {
+      "status": {
+      "start": true,
+      "stop": true
+    },
+      "event_file_name": "event.py",
+      "start_function": "on_start",
+      "stop_function": "on_stop",
+      "init_variable": {
+        "app": "Swit.app"
+      }
+    }
+  },
+
+  "mapping": {
+    "format": "Swit-mapping-v2",
+    "path": {
+      "prefix_command_path": "prefix_command",
+      "slash_command_path": "slash_command",
+      "command_group_path": "command_group",
+      "event_command_path": "events"
+    },
+
+    "prefix_command_list": [],
+    "slash_command_list": [],
+    "command_group_list": [],
+    "events_list": [
+      {
+        "file_name": "launch_ticket.py",
+        "class": "launch_ticket",
+        "custom_mapping": {
+          "enable": true,
+          "path": "launch_ticket.json"
+        }
+      }
+    ]
+  },
+
+  "hooks": {
+    "on_load": "on_load.py",
+    "on_reload": "on_reload.py"
+  },
+
+  "require":{
+    "python_version": ">=3.8",
+    "potato_pc": true,
+    "packages": ["discord.py",
+                 "colorama"]
+  },
+  "orther": {
+    "loader-mode": "advanced"
+  }
+}

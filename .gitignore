@@ -12,3 +12,9 @@ __pycache__/
 
 !/plugins/test-rar.disable
 !/swit.yml
+!/plugins/example.disable/
+!/plugins/Plugin configs/
+!/plugins/ticket.zip
+!/cache/plugin_extract/ticket/
+!/cache/plugin_extract/ticket.zip/
+!/plugins/example.disable/
