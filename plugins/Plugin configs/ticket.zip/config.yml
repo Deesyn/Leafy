@@ -1,9 +1,0 @@
-embed:
-  launch_ticket_embed:
-    title: "📦 Ticket"
-    description: "Để mở ticket vui lòng ấn vào nút bên dưới"
-    color: 0x83F99A
-
-ticket:
-  launch_at:
-    channel_id: 1405529842983899239
