@@ -1,6 +1,6 @@
 from datetime import datetime
 from rich.console import Console
-
+from Swit.src.handler.file.config import Config
 console = Console()
 
 class Logger:
@@ -36,9 +36,10 @@ class Logger:
     @staticmethod
     def ERROR(message: str): Logger._log("ERROR", Logger.COLORS["ERROR"], message)
     @staticmethod
-    def DEBUG(message: str, debug: bool = False):
-        if debug: Logger._log("DEBUG", Logger.COLORS["DEBUG"], message)
-    @staticmethod
     def CRITICAL(message: str): Logger._log("CRITICAL", Logger.COLORS["CRITICAL"], message)
     @staticmethod
     def LOADER(message: str): Logger._log("LOADER", Logger.COLORS["LOADER"], message)
+    @staticmethod
+    def DEBUG(message:str ):
+        if Config.Other.debug():
+            Logger._log('DEBUG', Logger.COLORS['DEBUG'], message)

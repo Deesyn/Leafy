@@ -121,7 +121,13 @@ class Config:
             def embed_format() -> str:
                 return Config.data.get('Swit', {}).get('package', {}).get('embed_format', 'default')
 
-
+    class Other:
+        @staticmethod
+        def version() -> str:
+            return Config.data.get('orther','None').get('version','None')
+        @staticmethod
+        def debug() -> bool:
+            return _to_bool(Config.data.get('orther', 'disable').get('debug', 'disable'))
     @staticmethod
     def Mapping() -> dict:
         base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..','..'))

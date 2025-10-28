@@ -5,7 +5,7 @@ from Swit.src.utils.logger import Logger
 
 
 class Cache:
-    cache_dir = Path(__file__).resolve().parent.parent.parent.parent.parent / "cache"
+    cache_dir = Path(__file__).resolve().parent.parent.parent.parent / "cache"
 
     @staticmethod
     def _ensure_dir() -> None:
@@ -29,7 +29,10 @@ class Cache:
             return "cache path not exists"
         try:
             with open(path, "r", encoding="utf-8") as f:
-                return f.read()
+                data = f.read()
+                Logger.DEBUG(f"Found {len(data)} bytes from {file}")
+                Logger.DEBUG(f"Read at: {path}")
+                return data
         except Exception as e:
             return f"error reading cache: {e}"
 
@@ -39,7 +42,10 @@ class Cache:
         mode = "a" if append else "w"
         try:
             with open(Cache.cache_dir / file, mode, encoding="utf-8") as f:
+                Logger.DEBUG(f"Write cache: {data}")
                 f.write(data)
+                Logger.DEBUG(f"Write at: {Cache.cache_dir / file}")
+                Logger.DEBUG('Write cache success!')
         except Exception as e:
             Logger.ERROR(f"Error writing cache: {e}")
 

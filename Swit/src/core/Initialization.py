@@ -25,12 +25,16 @@ from Swit.src.handler.file.path_manager import path
 async def initialization():
     """
     VI:
-        Tự tạo folder cache và logs nếu chưa có
+        Tự tạo folder cần thiết để Swit hoạt động nếu chưa có
     EN:
-        Create your own cache and logs folder if you don't already have one
+        Automatically create the necessary folder for Swit to operate if it does not exist
     """
     root = path.root()
     if not os.path.exists(os.path.join(root,'cache')):
         os.makedirs(name=f'{root}/cache',exist_ok=True)
     if not os.path.exists(os.path.join(root,'logs')):
         os.makedirs(name=f'{root}/logs',exist_ok=True)
+    if not os.path.exists(os.path.join(root,'plugins')):
+        os.makedirs(name=f'{root}/plugins',exist_ok=True)
+    if not os.path.exists(os.path.join(root,'plugins','Plugin configs')):
+        os.makedirs(name=f'{root}/plugins/Plugin configs',exist_ok=True)

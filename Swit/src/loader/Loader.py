@@ -19,6 +19,7 @@ from Swit.src.handler.file.config import Config
 from Swit.src.handler.file.extract import extract
 from Swit.src.handler.file.log import log
 from Swit.src.handler.file.path_manager import path
+from Swit.src.handler.cache import Cache
 
 # Swit Loader Imports
 from Swit.src.loader.load.LoadMainEvent import _load_main_event
@@ -36,84 +37,72 @@ class PluginLoader:
     def __init__(self, app):
         self.app: Optional[commands.Bot] = app
 
-        # Loader settings
         self.multi_thread = Config.Loader.multi_thread()
         self.max_thread = Config.Loader.max_thread()
         self.timeout = Config.Loader.timed_out()
 
-        # Allow settings
         self.allow_prefix = Config.Loader.Allow.prefix_command()
         self.allow_slash = Config.Loader.Allow.slash_command()
         self.allow_group = Config.Loader.Allow.group_command()
         self.allow_events = Config.Loader.Allow.events()
         self.allowed_formats = Config.Loader.Allow.plugin_format()
 
-        # Script loader settings
         self.script_loader_enabled = Config.Loader.ScriptLoader.status()
         self.disabled_scripts = Config.Loader.ScriptLoader.disable_script_list()
 
-
-    async def _load_plugin(self,plugin_type, plugin_name: str):
-
-        #flag
-        is_er = False
-
+    async def _load_plugin(self, plugin_type, plugin_name: str):
         if plugin_type.endswith('.zip'):
             try:
-                full_plugin_path = os.path.join(path.plugin(),plugin_name)
-                extract_path  = os.path.join(path.root(),'cache','plugin_extract')
+                cache_file_name = 'extract_plugin_list'
+                Cache.create(file=cache_file_name)
+                Cache_file_data = str(Cache.read(file=cache_file_name)).split('\n')
+                Logger.DEBUG(f"Loaded cache file data: {Cache_file_data}")
 
-                os.makedirs(extract_path,exist_ok=True)
+                full_plugin_path = os.path.join(path.plugin(), plugin_name)
+                extract_path = os.path.join(path.root(), 'cache', 'plugin_extract')
+                Logger.DEBUG(f"Plugin zip path: {full_plugin_path}")
+                Logger.DEBUG(f"Extraction path: {extract_path}")
 
-                plugin_name = str(plugin_name).split('.')[0]
+                os.makedirs(extract_path, exist_ok=True)
+                plugin_base_name = str(plugin_name).split('.')[0]
 
-                sys.path.insert(0, os.path.join(extract_path,plugin_name))
+                sys.path.insert(0, os.path.join(extract_path, plugin_base_name))
+                Logger.DEBUG(f"Added to sys.path: {os.path.join(extract_path, plugin_base_name)}")
 
-                with zipfile.ZipFile(full_plugin_path,'r') as z:
-                    z.extractall(path=os.path.join(extract_path,str(plugin_name).split('.')[0]))
-                Logger.LOADER(f"Extract success: {plugin_name}")
+                if plugin_base_name not in Cache_file_data:
+                    Logger.DEBUG(f"Plugin {plugin_base_name} not in cache. Extracting...")
+                    with zipfile.ZipFile(full_plugin_path, 'r') as z:
+                        z.extractall(path=os.path.join(extract_path, plugin_base_name))
+                        Logger.DEBUG(f"Extracted files: {z.namelist()}")
+                        Logger.DEBUG(f"Total files extracted: {len(z.namelist())}")
+                        Cache.write(file=cache_file_name, data=f"{plugin_base_name}\n", append=True)
+                    Logger.LOADER(f"Extract success: {plugin_base_name}")
+                else:
+                    Logger.DEBUG(f"Plugin {plugin_base_name} already extracted. Skipping extraction.")
+
                 try:
-                    Logger.LOADER(f"Load plugin: {plugin_name}")
-                    sys.path.insert(0,os.path.join(extract_path,plugin_name))
-                    prepare(plugin_path=os.path.join(str(extract_path),str(plugin_name)),plugin_name=plugin_name)
-                    await start_load_cog(self,extract_path,plugin_name)
-
+                    Logger.LOADER(f"Loading plugin: {plugin_base_name}")
+                    prepare(plugin_path=os.path.join(extract_path, plugin_base_name),
+                            plugin_name=plugin_base_name)
+                    await start_load_cog(self, extract_path, plugin_base_name)
+                    Logger.DEBUG(f"Plugin {plugin_base_name} added to cache")
                 except Exception as e:
-                    Logger.ERROR(message=f"Failed to load {plugin_name}! Skip")
+                    Logger.ERROR(f"Failed to load plugin {plugin_base_name}! Skip")
                     traceback_log_path = log.write_bug(traceback.format_exc())
-                    Logger.LOADER(message=f'The bug details are saved at {traceback_log_path}')
+                    Logger.LOADER(f"The bug details are saved at {traceback_log_path}")
+                    Logger.DEBUG(e)
             except Exception as e:
                 Logger.ERROR(f"Failed to extract plugin {plugin_name}!")
                 traceback_log_path = log.write_bug(traceback.format_exc())
-                Logger.LOADER(message=f'The bug details are saved at {traceback_log_path}')
-
-        if plugin_type == 'dir':
-            try:
-                Logger.LOADER(f"Load plugin: {plugin_name}")
-                sys.path.insert(0, os.path.join(path.plugin(), plugin_name))
-
-                _,_,_,self.packages_list = _get_plugin_info(None,plugin_name=plugin_name, plugin_object=plugin_name)
-                download_package(package_list=self.packages_list)
-
-                prepare(plugin_path=None,plugin_name=plugin_name)
-                await start_load_cog(self,extract_path=None,plugin_name=plugin_name)
-
-
-            except Exception as e:
-                is_er = True
-                sys.path.remove(os.path.join(path.plugin(), plugin_name))
-                Logger.ERROR(message=f"Failed to load {plugin_name}! Skip")
-                traceback_log_path = log.write_bug(data=str(e))
-                Logger.LOADER(message=f'The bug details are saved at {traceback_log_path}')
-            finally:
-                if is_er == False:
-                    sys.path.remove(os.path.join(path.plugin(), plugin_name))
-                    Logger.INFO(message=f'Load {plugin_name} success!')
-
+                Logger.LOADER(f"The bug details are saved at {traceback_log_path}")
+                Logger.DEBUG(e)
 
 
     async def start_loader(self):
-        plugins = [plugin for plugin in os.listdir(path.plugin()) if plugin != 'Plugin configs']
+        plugins = [
+            plugin for plugin in os.listdir(path.plugin())
+            if plugin != 'Plugin configs' and not (plugin.endswith('.disable') or plugin.endswith('.dis'))
+        ]
         Logger.INFO("Loading...")
         print_plugin_dir_tree(plugin_list=plugins)
         Logger.INFO(f"Discovered: {len(plugins)}" + ' plugin' if len(plugins) < 2 else ' plugins')

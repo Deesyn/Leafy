@@ -1,0 +1,6 @@
+sha256: f1bb4e9dcd6fe5eeb016a0bcbf22ef4d2daa14b24071d8bc3eeb0a5cda2ec466
+Traceback (most recent call last):
+  File "F:\Project\Azurite\Swit\src\loader\Loader.py", line 84, in _load_plugin
+    Cache.write(file=cache_file_name,data=f"{plugin_name}\n",append=True).write()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'write'

@@ -65,13 +65,13 @@ Loader:
       # Each plugin is assigned a unique hash. Whenever a change is detected, Swit immediately identifies it and automatically reloads the corresponding mapping.
 # =========================================================================
 
-  Swit-Protect:
-    is_active: false
-    max_cpu: 20 # 20%
-    max_memory: 25 # 300mb
-    timed_out: 5000 #5000ms = 5s
-    deny:
-      read: ['swit.yml']
+  Swit-Protect:                     # not working
+    is_active: false                # not working
+    max_cpu: 20 # 20%               # not working
+    max_memory: 25 # 300mb          # not working
+    timed_out: 5000 #5000ms = 5s    # not working
+    deny:                           # not working
+      read: ['swit.yml']            # not working
 
 # =========================================================================
 
@@ -88,7 +88,11 @@ Loader:
 
     # Important
     # To export as RAR, please install WinRAR.
-    plugin_format: ['folder','zip','rar'] # format type |
+    plugin_format:
+      zip: enable
+      rar: disable     # not working
+      folder: enable
+                                          # format type |
                                           # .zip        | zip file
                                           # .rar        | rar file
                                           # folder      | folder
@@ -121,6 +125,12 @@ console:
 require:
   packages: ['discord.py','rich','pyyaml']
 
+Logger:
+  webhook:
+    toggle: disable
+    webhook_url: 'https://discord.com/api/webhooks/'
+
+
 orther:
   version: v2
-  debug: disable
+  debug: enable
