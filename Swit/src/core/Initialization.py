@@ -30,11 +30,9 @@ async def initialization():
         Automatically create the necessary folder for Swit to operate if it does not exist
     """
     root = path.root()
-    if not os.path.exists(os.path.join(root,'cache')):
-        os.makedirs(name=f'{root}/cache',exist_ok=True)
-    if not os.path.exists(os.path.join(root,'logs')):
-        os.makedirs(name=f'{root}/logs',exist_ok=True)
-    if not os.path.exists(os.path.join(root,'plugins')):
-        os.makedirs(name=f'{root}/plugins',exist_ok=True)
-    if not os.path.exists(os.path.join(root,'plugins','Plugin configs')):
-        os.makedirs(name=f'{root}/plugins/Plugin configs',exist_ok=True)
+    os.makedirs(name=f'{root}/cache',exist_ok=True)
+    os.makedirs(name=f'{root}/logs',exist_ok=True)
+    os.makedirs(name=f'{root}/data',exist_ok=True)
+    os.makedirs(name=f'{root}/data/database',exist_ok=True)
+    os.makedirs(name=f'{root}/plugins',exist_ok=True)
+    os.makedirs(name=f'{root}/plugins/Plugin configs',exist_ok=True)

@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from Swit.src.utils.logger import Logger
+from Swit.src.utils.Logger import Logger
 
 
 class Cache:

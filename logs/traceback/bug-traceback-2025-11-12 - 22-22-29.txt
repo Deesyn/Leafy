@@ -1,0 +1,6 @@
+sha256: 91710905f35e854bb3ede4c2835e5a505a9dfe2863885706bd01c77a1a362968
+Traceback (most recent call last):
+  File "F:\Project\Azurite\Swit\src\loader\Loader.py", line 107, in _load_plugin
+    await start_load_cog(self, plugin_name=plugin_name)
+          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: start_load_cog() missing 1 required positional argument: 'extract_path'

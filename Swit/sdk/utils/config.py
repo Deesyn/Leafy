@@ -69,10 +69,14 @@ class config():
         try:
             temp_plugin_path = caller_path.parts
             for i, value in enumerate(temp_plugin_path):
-                if value.lower() == 'plugins':
+                if value.lower() in ['plugins','plugin_extract']:
                     plugin_name = caller_path.parts[i + 1]
                     break
-            plugin_path = (Path(__file__).parent.parent.parent / "plugins" / plugin_name)
+            print((Path(__file__).parent.parent.parent.parent))
+            if 'plugin_extract' in temp_path:
+                plugin_path = (Path(__file__).parent.parent.parent / "cache" / "plugin_extract" / plugin_name)
+            else:
+                plugin_path = (Path(__file__).parent.parent.parent / "plugins" / plugin_name)
             plugin_config_path = (Path(__file__).parent.parent.parent / "plugins" / "Plugin configs" / plugin_name / "config.yml")
 
             if plugin_config_path.exists():

@@ -1,0 +1,9 @@
+sha256: 563eb838ffb8bb8df5cfb2958f6681caf5de1917221c67431d2c9d194aac4030
+Traceback (most recent call last):
+  File "F:\Project\Azurite\Swit\src\loader\Loader.py", line 176, in _load_plugin
+    prepare(plugin_path=os.path.join(plugin_path), plugin_name=plugin_name)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Project\Azurite\Swit\src\loader\PluginLoaderPrepare.py", line 17, in prepare
+    if mapping_config.get('format', 'Swit-mapping-v2') != mapping_data['mapping']['format']:
+                                                          ~~~~~~~~~~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable

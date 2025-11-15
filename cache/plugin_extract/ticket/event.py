@@ -1,4 +1,4 @@
-from Swit.SwitSDK import config
+from Swit.sdk import config
 
 async def on_start(app):
     config.make(config_data='assets/config_data.yml')

@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from typing import Optional
-from Swit.SwitSDK.config import config
+from Swit.sdk.utils.config import config
 from plugins.ticket.ui.button.create_ticket_button import create_ticket_button
 class launch_ticket(commands.Cog):
     def __init__(self, bot):

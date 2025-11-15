@@ -1,0 +1,20 @@
+sha256: fb32620d99301093480ba9f616a73e602c54edde37b165dd3bac47f59148b8fe
+Traceback (most recent call last):
+  File "F:\Project\Azurite\Swit\src\loader\load\LoadMapping.py", line 21, in _load_mapping
+    raise e
+  File "F:\Project\Azurite\Swit\src\loader\load\LoadMapping.py", line 16, in _load_mapping
+    with open(os.path.join(str(plugin_path),'mapping.json'),'r',encoding='utf-8') as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'F:\\Project\\Azurite\\plugins\\test\\mapping.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\Project\Azurite\Swit\src\loader\Loader.py", line 176, in _load_plugin
+    prepare(plugin_path=os.path.join(plugin_path), plugin_name=plugin_name)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\Project\Azurite\Swit\src\loader\PluginLoaderPrepare.py", line 13, in prepare
+    mapping_data = _load_mapping(plugin_path=plugin_path, plugin_ref=plugin_name, plugin_object=None)
+  File "F:\Project\Azurite\Swit\src\loader\load\LoadMapping.py", line 44, in _load_mapping
+    raise RuntimeError(f"Failed to load mapping.json for '{plugin_name if plugin_object else plugin_ref}': {e}")
+RuntimeError: Failed to load mapping.json for 'test': [Errno 2] No such file or directory: 'F:\\Project\\Azurite\\plugins\\test\\mapping.json'

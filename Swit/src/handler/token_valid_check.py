@@ -1,5 +1,5 @@
 import requests
-from Swit.src.utils.logger import Logger
+from Swit.src.utils.Logger import Logger
 
 def _token_valid_check(token: str):
     header = {"Authorization": f"Bot {token}"}

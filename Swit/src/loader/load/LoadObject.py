@@ -10,7 +10,7 @@ import traceback
 from discord.ext import commands
 from Swit.src.handler.file.path_manager import path
 from Swit.src.handler.file.log import log
-from Swit.src.utils.logger import Logger
+from Swit.src.utils.Logger import Logger
 
 async def Load_Cog(
         app: commands.Bot,

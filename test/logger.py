@@ -1,3 +1,3 @@
-from Swit.SwitSDK.Logger import Logger
+from Swit.sdk.Logger import Logger
 
 

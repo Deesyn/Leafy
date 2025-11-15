@@ -1,0 +1,17 @@
+from enum import IntEnum
+
+class StatusCode(IntEnum):
+    SUCCESS = 200
+    CREATED = 201
+
+    ERROR = 400
+    UNAUTHORIZED = 401
+    THREADING_LOCK = 402
+    NOT_FOUND = 404
+
+    INTERNAL_ERROR = 500
+    NOT_IMPLEMENTED = 501
+    SERVICE_UNAVAILABLE = 503
+
+    USER_IN_RATELIMIT = 1001
+    USER_NOT_IN_RATELIMIT = 1002

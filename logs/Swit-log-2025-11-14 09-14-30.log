@@ -1,0 +1,22 @@
+write log at 2025-11-14 09:14:30
+[2025-11-14 09:14:30] [Swit/DEBUG] > Found 48 bytes from package_download_cache
+[2025-11-14 09:14:30] [Swit/DEBUG] > Read at: F:\Project\Azurite\cache\package_download_cache
+[2025-11-14 09:14:31] [Swit/INFO] > Running on 3.13.5
+[2025-11-14 09:14:31] [Swit/INFO] > Python path F:\Project\Azurite\.venv\Scripts\python.exe
+[2025-11-14 09:14:32] [Swit/LOAD] > Api Status code: 200
+[2025-11-14 09:14:32] [Swit/LOAD] > Valid Token!
+[2025-11-14 09:14:32] [Swit/INFO] > Downloading required packages...
+[2025-11-14 09:14:32] [Swit/DEBUG] > Found 48 bytes from package_download_cache
+[2025-11-14 09:14:32] [Swit/DEBUG] > Read at: F:\Project\Azurite\cache\package_download_cache
+[2025-11-14 09:14:32] [Swit/INFO] > All required packages downloaded!
+[2025-11-14 09:14:32] [Swit/LOADER] > Starting Loader..
+[2025-11-14 09:14:32] [Swit/INFO] > Loading...
+[2025-11-14 09:14:32] [Swit/INFO] > └── test
+[2025-11-14 09:14:32] [Swit/INFO] > Discovered: 1 plugin
+[2025-11-14 09:14:37] [Swit/DEBUG] > Added to sys.path: F:\Project\Azurite\plugins\test
+[2025-11-14 09:14:37] [Swit/LOADER] > Loading plugin: test
+[2025-11-14 09:14:46] [Swit/WARN] > Skipped test mapping.json not exist
+[2025-11-14 09:15:24] [Swit/LOADER] > Load all plugin in 0.0s!
+[2025-11-14 09:15:24] [Swit/INFO] > Waiting for sync...
+[2025-11-14 09:15:24] [Swit/INFO] > Sync done after 0.31s!
+[2025-11-14 09:15:24] [Swit/INFO] > The startup process takes a total: 0.33s!

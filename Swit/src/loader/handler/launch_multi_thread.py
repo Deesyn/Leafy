@@ -5,12 +5,12 @@ import asyncio
 
 from Swit.src.handler.file.config import Config
 from Swit.src.handler.file.path_manager import path
-from Swit.src.utils.logger import Logger
+from Swit.src.utils.Logger import Logger
 from Swit.src.utils.async_runner import run_async
 
 from Swit.src.loader.load.LoadObject import Load_Cog
 from Swit.src.loader.load.LoadMapping import _load_mapping
-from Swit.src.loader.utils.CheckPythonVersion import _check_python_version
+from Swit.src.utils.LoaderUtils.CheckPythonVersion import _check_python_version
 async def _handler(app,plugin):
 
     #flag

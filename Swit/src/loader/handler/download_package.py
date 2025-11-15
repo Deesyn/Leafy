@@ -1,6 +1,6 @@
 import subprocess
 import sys
-from Swit.src.utils.logger import Logger
+from Swit.src.utils.Logger import Logger
 from Swit.src.handler.cache import Cache
 
 def download_package(package_list):

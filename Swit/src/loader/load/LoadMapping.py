@@ -2,6 +2,8 @@ import os
 import json
 from functools import lru_cache
 import zipfile,rarfile
+
+from Swit.src.utils.Logger import Logger
 from Swit.src.handler.file.path_manager import path
 from Swit.src.handler.file.extract import extract
 @lru_cache(maxsize=3)
@@ -13,6 +15,9 @@ def _load_mapping(plugin_path: None,plugin_ref: str, plugin_object: None):
         if plugin_path:
             try:
                 if os.path.exists(os.path.join(str(plugin_path))):
+                    print(os.path.exists(os.path.join(str(plugin_path), 'mapping.json')))
+                    if not os.path.exists(os.path.join(str(plugin_path),'mapping.json')):
+                        return None
                     with open(os.path.join(str(plugin_path),'mapping.json'),'r',encoding='utf-8') as f:
                         return json.load(f)
                 else:
@@ -27,7 +32,7 @@ def _load_mapping(plugin_path: None,plugin_ref: str, plugin_object: None):
                 archive = extract.zip(plugin_full_path)
             else:
                 archive = extract.rar(plugin_full_path)
-
+            
             with archive.open("mapping.json") as f:
                 return json.load(f)
 
@@ -37,6 +42,8 @@ def _load_mapping(plugin_path: None,plugin_ref: str, plugin_object: None):
 
         else:
             mapping_path = os.path.join(path.plugin(), plugin_name if plugin_object else plugin_ref, "mapping.json")
+            if not os.path.exists(mapping_path):
+                return False
             with open(mapping_path, "r", encoding="utf-8") as f:
                 return json.load(f)
 

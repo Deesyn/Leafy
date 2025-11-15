@@ -1,7 +1,12 @@
+import os.path
 from datetime import datetime
 from rich.console import Console
 from Swit.src.handler.file.config import Config
+from Swit.src.handler.file.path_manager import path
+from Swit.src.utils.StatusCode import StatusCode
 console = Console()
+
+log_path = None
 
 class Logger:
     COLORS = {
@@ -16,8 +21,39 @@ class Logger:
     }
 
     @staticmethod
+    def createLog():
+
+        global log_path
+        if log_path:
+            return
+        log_path = os.path.join(
+            path.root(),
+            'logs',
+            f"Swit-log-{datetime.now().strftime('%Y-%m-%d %H-%M-%S')}.log"
+        )
+
+        with open(log_path, 'w', encoding='utf-8') as f:
+            f.write(f"write log at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+
+        return log_path
+
+    @staticmethod
+    def getLogPath():
+        if log_path:
+            return log_path
+        else:
+            return StatusCode.NOT_FOUND
+
+
+    @staticmethod
     def _log(level: str, color: str, message: str):
+        Logger.createLog()
+        global log_path
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        if log_path:
+            with open(log_path, 'a', encoding='utf-8') as f:
+                f.writelines(f"[{timestamp}] [Swit/{level}] > {message}\n")
 
         console.print(
             f"[rgb(130,129,129)][{timestamp}][/rgb(130,129,129)] "

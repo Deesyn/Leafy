@@ -123,7 +123,7 @@ console:
   round: "2" #round(num,{round})
 
 require:
-  packages: ['discord.py','rich','pyyaml']
+  packages: ['discord.py','rich','pyyaml','colorama','psutil','requests']
 
 Logger:
   webhook:

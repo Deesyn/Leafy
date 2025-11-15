@@ -1,28 +1,33 @@
 import os
 import sys
 import asyncio
-from Swit.SwitSDK.api import App
-from Swit.src.utils.logger import Logger
+from Swit.sdk.api import App
+from Swit.src.utils.Logger import Logger
 
 async def _load_main_event(plugin_type: str, plugin_name: str, plugin_source):
     from Swit.src.handler.file.path_manager import path
     from Swit.src.loader.load.LoadMapping import _load_mapping
-    from Swit.src.loader.utils.ImportModule import _import_module
+    from Swit.src.utils.LoaderUtils.ImportModule import _import_module
 
-    Logger.DEBUG(f"Loading main event for plugin: {plugin_name}")
 
     mapping = _load_mapping(
         plugin_path=None,
         plugin_ref=plugin_name if plugin_type == "dir" else None,
         plugin_object=plugin_source
     )
+    if not mapping:
+        return
+    Logger.DEBUG(f"Loading main event for plugin: {plugin_name}")
     mod_info = mapping.get("module", {}).get('main_event', {})
 
     event_file = mod_info.get("event_file_name")
     start_func_name = mod_info.get("start_function")
     init_variable = mod_info.get('init_variable', {})
-
-    plugin_path = os.path.join(path.plugin(), plugin_name)
+    if str(plugin_name).endswith('.zip'):
+        print(plugin_name)
+        plugin_path = os.path.join(str(path.root()),'cache','plugin_extract',str(plugin_name).split('.')[0])
+    else:
+        plugin_path = os.path.join(path.plugin(), plugin_name)
     sys.path.insert(0, plugin_path)
     Logger.DEBUG(f"Inserted plugin path into sys.path: {plugin_path}")
 

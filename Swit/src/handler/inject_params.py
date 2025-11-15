@@ -1,4 +1,4 @@
-from Swit.SwitSDK.api import App
+from Swit.sdk.api import App
 def inject_params(init_variable_data):
     params = {}
     mapping = {
